@@ -1,3 +1,4 @@
+package classes;
 import java.awt.*;
 
 /**
@@ -14,7 +15,6 @@ public class Lives
     private int height;
     private int lifeCount;
     private int fCount = -1;
-    private boolean fCountBool =false;
     private String imageName;
     
 

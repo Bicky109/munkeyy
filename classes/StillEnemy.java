@@ -1,9 +1,8 @@
+package classes;
 import java.awt.*;
 
 public class StillEnemy extends Enemy
 {
-    private int speed;
-    private int screenHeight;
 
     public StillEnemy(int x, int y, int w, int h, int l) 
     {

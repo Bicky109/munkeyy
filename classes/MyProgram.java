@@ -1,5 +1,7 @@
+package classes;
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 
 public class MyProgram extends JPanel implements ActionListener, KeyListener {
@@ -254,9 +256,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     {
                         e.hit();
                         System.out.println("gotHit");
-                        enemies[0] = e.checkLives(e);
+                        enemies[count] = e.checkLives(e);
                         if(e == null)
+                        {
                         continue;
+                        }
                     }
                 }
                 }
