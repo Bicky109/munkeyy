@@ -1,6 +1,5 @@
 import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+
 /**
  * Write a description of class Player here.
  *
@@ -26,7 +25,7 @@ public class Sword
         sword = new Rectangle(x, y, w, h); //x y w h
         width = w;
         height = h;
-        imageName = "bananasword.png";
+        imageName = "images/bananasword.png";
         
         
     }
@@ -72,7 +71,7 @@ public class Sword
     
     public void getSword()
     {
-        imageName = "blank.png";
+        imageName = "images/blank.png";
     }
     
     public Image getImage()

@@ -29,6 +29,6 @@ public class StillEnemy extends Enemy
     
     }
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("stillenemy.png");
+        return ImageLoader.loadCompatibleImage("images/stillenemy.png");
     }
 }

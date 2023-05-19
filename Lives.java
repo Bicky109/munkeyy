@@ -1,6 +1,5 @@
 import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+
 /**
  * Write a description of class Player here.
  *
@@ -29,7 +28,7 @@ public class Lives
         width = w;
         height = h;
         lifeCount = 3;
-        imageName = "fulllife.png";
+        imageName = "images/fulllife.png";
         
         
     }
@@ -98,41 +97,41 @@ public class Lives
         }
         if(lifeCount == 3 && fCount <= 30 && fCount > 28)
         {
-            imageName = "3lifesad.png";
+            imageName = "images/3lifesad.png";
         }
         else if(lifeCount == 3 && fCount < 28 && fCount > 23)
         {
-            imageName = "3lifebroke.png";
+            imageName = "images/3lifebroke.png";
         }
         else if(lifeCount == 3 && fCount <= 23 && fCount > 0)
         {
-            imageName = "3lifeblank.png";
+            imageName = "images/3lifeblank.png";
             this.loseLife();
         }
         if(lifeCount == 2 && fCount <= 30 && fCount > 28)
         {
-            imageName = "2lifesad.png";
+            imageName = "images/2lifesad.png";
         }
         else if(lifeCount == 2 && fCount < 28 && fCount > 23)
         {
-            imageName = "2lifebroke.png";
+            imageName = "images/2lifebroke.png";
         }
         else if(lifeCount == 2 && fCount <= 23 && fCount > 0)
         {
-            imageName = "2lifeblank.png";
+            imageName = "images/2lifeblank.png";
             this.loseLife();
         }
         if(lifeCount == 1 && fCount <= 30 && fCount > 28)
         {
-            imageName = "1lifesad.png";
+            imageName = "images/1lifesad.png";
         }
         else if(lifeCount == 1 && fCount < 28 && fCount > 23)
         {
-            imageName = "1lifebroke.png";
+            imageName = "images/1lifebroke.png";
         }
         else if(lifeCount == 1 && fCount <= 23 && fCount > 0)
         {
-            imageName = "blank.png";
+            imageName = "images/blank.png";
             this.loseLife();
         }
     }

@@ -32,7 +32,7 @@ public abstract class Enemy
     public void hit()
     {
         canGetHit = false;
-        fCount = 30;
+        fCount = 15;
         lives --;
     }
     
@@ -76,7 +76,7 @@ public abstract class Enemy
     }
     
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("nameOfDefaultImage.png");
+        return ImageLoader.loadCompatibleImage("images/nameOfDefaultImage.png");
     }
     
     public abstract Color getColor();

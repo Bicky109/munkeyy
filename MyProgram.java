@@ -74,16 +74,16 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 x = false;
             }
         }
-        else if(e.getKeyCode() == KeyEvent.VK_UP) {
+        else if(e.getKeyCode() == KeyEvent.VK_UP||e.getKeyCode() == KeyEvent.VK_W) {
             up = true;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+        else if(e.getKeyCode() == KeyEvent.VK_DOWN||e.getKeyCode() == KeyEvent.VK_S) {
             down = true;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT||e.getKeyCode() == KeyEvent.VK_A) {
             left = true;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT||e.getKeyCode() == KeyEvent.VK_D) {
             right = true;
         }
     }
@@ -95,16 +95,16 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         {
                 x = false;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_UP) {
+        else if(e.getKeyCode() == KeyEvent.VK_UP||e.getKeyCode() == KeyEvent.VK_W) {
             up = false;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+        else if(e.getKeyCode() == KeyEvent.VK_DOWN||e.getKeyCode() == KeyEvent.VK_S) {
             down = false;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT||e.getKeyCode() == KeyEvent.VK_A) {
             left = false;
         }
-        else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT||e.getKeyCode() == KeyEvent.VK_D) {
             right = false;
         }
     }
@@ -126,7 +126,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
        
         up = down = left = right = false;
    
-        player = new Player(215,315,80,80);
+        player = new Player(215,315,50,60);
         sword = new Sword(980,422,60,80);
         lives = new Lives(400,400,128,128);
         //goal = new Rectangle(400, 300, 20, 20);
@@ -134,7 +134,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         
         //levels[0] = new Level(); //create level  string image name
         
-        enemies[0] = new StillEnemy(250, 250, 40, 40,4);
+        enemies[0] = new StillEnemy(250, 250, 40, 40,2);
         //enemies[1] = new VerticalEnemy(200, 100, 40, 20, gameHeight, 4);
         //enemies[2] = new DiagonalEnemy(300, 300, 20, 20, gameHeight, 1, gameWidth, 1);
         //enemies[3] = new StalkerEnemy(100, 200, 20, 20, player.getRect());
@@ -274,7 +274,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     }
    
     public Image get1Image(){
-        return ImageLoader.loadCompatibleImage("chest.png");
+        return ImageLoader.loadCompatibleImage("images/chest.png");
     }
     
     public Image get2Image(){
@@ -282,7 +282,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     }
     
     public Image get3Image(){
-        return ImageLoader.loadCompatibleImage("swordroom.png");
+        return ImageLoader.loadCompatibleImage("images/swordroom.png");
     }
     //The paint method does 3 things
     //1 - it draws a white background
@@ -293,8 +293,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         
         g.drawImage(get3Image(),0, 0,gameWidth,gameHeight,null);
         
-        //g.setColor(Color.RED);
-        //g.drawRect(player.getX() + 75, player.getY() + 30, 50, 30);
+        g.setColor(Color.RED);
+        g.drawRect(player.getX() , player.getY(), player.getWidth(),player.getHeight());
         //g.drawRect(sword.getX(), sword.getY(), sword.getWidth(), sword.getHeight());
         
         //g.drawImage(get1Image(),goal.x - 15, goal.y - 20, 50, 50,null);
@@ -303,7 +303,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         
         //draws player
         g.drawImage(sword.getImage(),sword.getX() , sword.getY(), sword.getWidth(), sword.getHeight(),null);   
-        g.drawImage(player.getImage(),player.getX() -40 , player.getY() - 40, 168, 168,null);
+        g.drawImage(player.getImage(),player.getX()-58, player.getY() - 52, 168, 168,null);
         g.drawImage(lives.getImage(),lives.getX() , lives.getY(), lives.getWidth(), lives.getHeight(),null);   
             
         for(Enemy e: enemies) {

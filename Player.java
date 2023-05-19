@@ -1,8 +1,5 @@
 import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.io.*;
-import java.lang.Thread;
+
 /**
  * Write a description of class Player here.
  *
@@ -35,7 +32,7 @@ public class Player
         player = new Rectangle(x, y, w,h); //x y w h
         width = w;
         height = h;
-        imageName = "playerdownnosword.png";
+        imageName = "images/playerdownnosword.png";
         
         
     }
@@ -45,31 +42,31 @@ public class Player
         if(hasSword)
         {   
             isAttacking = true;
-            if(imageName.equals("playerup.png"))
+            if(imageName.equals("images/playerup.png"))
             {
-                sword = new Rectangle(player.x + 15, player.y -40, 30,50);
-                imageName = "playerswordup.png";
+                sword = new Rectangle(player.x + 15, player.y -50, 60,75);
+                imageName = "images/playerswordup.png";
                 SFCount = 8;
                 canX = false;
             }
-            else if(imageName.equals("playerdown.png"))
+            else if(imageName.equals("images/playerdown.png"))
             {
-                sword = new Rectangle(player.x + 40, player.y + 75, 50,30);
-                imageName = "playersworddown.png";
+                sword = new Rectangle(player.x + 22, player.y + 75, 50,70);
+                imageName = "images/playersworddown.png";
                 SFCount = 8;
                 canX = false;
             }
-            else if(imageName.equals("playerleft.png"))
+            else if(imageName.equals("images/playerleft.png"))
             {
-                sword = new Rectangle(player.x - 35, player.y + 30, 50,30);
-                imageName = "playerswordleft.png";
+                sword = new Rectangle(player.y - 40, player.y + 23, 75,50);
+                imageName = "images/playerswordleft.png";
                 SFCount = 8;
                 canX = false;
             }
-            else if(imageName.equals("playerright.png"))
+            else if(imageName.equals("images/playerright.png"))
             {
                 sword = new Rectangle(player.x + 75, player.y + 30, 50,30);
-                imageName = "playerswordright.png";
+                imageName = "images/playerswordright.png";
                 SFCount = 8;
                 canX = false;
             }
@@ -85,21 +82,21 @@ public class Player
             SFCount = -1;
             isAttacking = false;
             canX = true;
-            if(imageName.equals("playerswordup.png"))
+            if(imageName.equals("images/playerswordup.png"))
             {
-                imageName = "playerup.png";
+                imageName = "images/playerup.png";
             }
-            else if(imageName.equals("playersworddown.png"))
+            else if(imageName.equals("images/playersworddown.png"))
             {
-                imageName = "playerdown.png";
+                imageName = "images/playerdown.png";
             }
-            else if(imageName.equals("playerswordleft.png"))
+            else if(imageName.equals("images/playerswordleft.png"))
             {
-                imageName = "playerleft.png";
+                imageName = "images/playerleft.png";
             }
-            else if(imageName.equals("playerswordright.png"))
+            else if(imageName.equals("images/playerswordright.png"))
             {
-                imageName = "playerright.png";
+                imageName = "images/playerright.png";
             }
         }
     }
@@ -199,11 +196,11 @@ public class Player
         {
             if(hasSword)
             {
-                imageName = "playerup.png";
+                imageName = "images/playerup.png";
             }
             else
             {
-                imageName = "playerupnosword.png";
+                imageName = "images/playerupnosword.png";
             }
         
             this.y(-6);
@@ -215,11 +212,11 @@ public class Player
         {
             if(hasSword)
             {
-                imageName = "playerdown.png";
+                imageName = "images/playerdown.png";
             }
             else
             {
-                imageName = "playerdownnosword.png";
+                imageName = "images/playerdownnosword.png";
             }
         
             this.y(6);
@@ -231,11 +228,11 @@ public class Player
         {
             if(hasSword)
             {
-                imageName = "playerleft.png";
+                imageName = "images/playerleft.png";
             }
             else
             {
-                imageName = "playerleftnosword.png";
+                imageName = "images/playerleftnosword.png";
             }
         
             this.x(-6);
@@ -245,7 +242,7 @@ public class Player
     {
         if(!isAttacking)
         {
-            imageName = "playerright.png";
+            imageName = "images/playerright.png";
         
             this.x(6);
         }
@@ -254,7 +251,7 @@ public class Player
     {
         if(!isAttacking)
         {
-            imageName = "playerright.png";
+            imageName = "images/playerright.png";
         
             this.y(-6);
             this.x(6);
@@ -266,11 +263,11 @@ public class Player
         {
             if(hasSword)
             {
-                imageName = "playerleft.png";
+                imageName = "images/playerleft.png";
             }
             else
             {
-                imageName = "playerleftnosword.png";
+                imageName = "images/playerleftnosword.png";
             }
         
             this.y(-6);
@@ -281,7 +278,7 @@ public class Player
     {
         if(!isAttacking)
         {
-            imageName = "playerright.png";
+            imageName = "images/playerright.png";
         
             this.y(6);
             this.x(6);
@@ -293,11 +290,11 @@ public class Player
         {
             if(hasSword)
             {
-                imageName = "playerleft.png";
+                imageName = "images/playerleft.png";
             }
             else
             {
-                imageName = "playerleftnosword.png";
+                imageName = "images/playerleftnosword.png";
             }
         
             this.y(6);
