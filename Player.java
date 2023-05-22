@@ -59,7 +59,7 @@ public class Player
             }
             else if(imageName.equals("images/playerleft.png"))
             {
-                sword = new Rectangle(player.y - 40, player.y + 23, 75,50);
+                sword = new Rectangle(player.x - 60, player.y + 13, 75,50);
                 imageName = "images/playerswordleft.png";
                 SFCount = 8;
                 canX = false;

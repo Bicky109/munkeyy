@@ -301,6 +301,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         
         g.setColor(Color.RED);
         g.drawRect(player.getX() , player.getY(), player.getWidth(),player.getHeight());
+        //g.drawRect(player.getX() - 60, player.getY() + 13, 75,50);
         //g.drawRect(sword.getX(), sword.getY(), sword.getWidth(), sword.getHeight());
         
         //g.drawImage(get1Image(),goal.x - 15, goal.y - 20, 50, 50,null);
