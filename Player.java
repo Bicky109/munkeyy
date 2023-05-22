@@ -132,7 +132,6 @@ public class Player
         if(imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png"))
             {
                 player.y += 42;
-                System.out.println(imageName);
             }
             else if(imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png"))
             {

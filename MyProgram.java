@@ -262,10 +262,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                         e.hit();
                         System.out.println("gotHit");
                         enemies[count] = e.checkLives(e);
-                        if(e == null)
-                        {
-                        continue;
-                        }
                     }
                 }
                 }

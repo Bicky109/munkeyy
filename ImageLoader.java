@@ -1,10 +1,8 @@
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.awt.Image;
 import java.util.*;
 
