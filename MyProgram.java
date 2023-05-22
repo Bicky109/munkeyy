@@ -1,4 +1,4 @@
-package classes;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -219,6 +219,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             sword.getSword();
         }
         
+        
         if(lives.getFCount() >= 0)
         {
             lives.fCount();
@@ -248,6 +249,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                         lives.startFCount();
                     }
                 }
+                if(e.intersects(player.getRect()))
+                {
+                    player.bounce();   
+                }
             }
             try{
                 if(e.canGetHit() && player.getHasSword() && e.getLives() > 0)
@@ -274,20 +279,17 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             }
             
         }
+        if(lives.getLifeCount() <= 0)
+        {
+            onLose();
+        }
        
     }
-   
+    
     public Image get1Image(){
-        return ImageLoader.loadCompatibleImage("images/chest.png");
-    }
-    
-    public Image get2Image(){
-        return ImageLoader.loadCompatibleImage("guide.png");
-    }
-    
-    public Image get3Image(){
         return ImageLoader.loadCompatibleImage("images/swordroom.png");
     }
+
     //The paint method does 3 things
     //1 - it draws a white background
     //2 - it draws the player in blue
@@ -295,7 +297,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     //4 - it draws all the Enemy objects
     public void paint(Graphics g) {
         
-        g.drawImage(get3Image(),0, 0,gameWidth,gameHeight,null);
+        g.drawImage(get1Image(),0, 0,gameWidth,gameHeight,null);
         
         g.setColor(Color.RED);
         g.drawRect(player.getX() , player.getY(), player.getWidth(),player.getHeight());

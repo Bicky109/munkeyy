@@ -1,4 +1,4 @@
-package classes;
+
 import java.awt.*;
 
 /**
@@ -127,6 +127,27 @@ public class Player
         return sword;
     }
     
+    public void bounce()
+    {
+        if(imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png"))
+            {
+                player.y += 42;
+                System.out.println(imageName);
+            }
+            else if(imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png"))
+            {
+                player.y -= 42;
+            }
+            else if(imageName.equals("images/playerleft.png") || imageName.equals("images/playerleftnosword.png"))
+            {
+                player.x += 42;
+            }
+            else if(imageName.equals("images/playerright.png") || imageName.equals("images/playerrightnosword.png"))
+            {
+                player.x -= 42;
+            }
+    }
+
     public void hit()
     {   
         canGetHit = false;

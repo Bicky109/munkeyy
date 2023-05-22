@@ -1,4 +1,4 @@
-package classes;
+
 import java.awt.*;
 
 public class StillEnemy extends Enemy
