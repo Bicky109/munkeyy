@@ -19,7 +19,22 @@ public class Level {
 
     private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
 
-    // new level consturcotr
+    /**
+     * Constructor for objects of class Level
+     * @param levelNum the level number
+     * @param nextLevelNumLeft the level number of the level to the left
+     * @param nextLevelNumUp the level number of the level above
+     * @param nextLevelNumRight the level number of the level to the right
+     * @param nextLevelNumDown the level number of the level below
+     * @param playerX player's x position
+     * @param playerY player's y position
+     * @param doorLeft whether the level has a door left
+     * @param doorUp wether the level has a door up
+     * @param doorRight whether the level has a door right
+     * @param doorDown whether the level has a door down
+     * @param doesHaveSword whether the level has a sword
+     * @param theImageName image name
+     */
     public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown, int playerX, int playerY, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown, boolean doesHaveSword, String theImageName)
     {
         up = down = left = right = x = false;
@@ -52,6 +67,12 @@ public class Level {
         imageName = theImageName;
     }
 
+    /**
+     * Passes in the player, lives, and door entered from
+     * @param p the player
+     * @param l the lives
+     * @param d the door entered from
+     */
     public void updateValues(Player p, Lives l, Door d)
     {
         player = p;
@@ -59,6 +80,9 @@ public class Level {
         doorEnteredFrom = d;
     }
 
+    /**
+     * Sets starting location of player based on which door they entered from
+     */
     public void setStartingPosition()
     {
         if(this.getDoorEnteredFrom() instanceof LeftDoor)
@@ -111,16 +135,25 @@ public class Level {
         }
     }
 
+    /**
+     * Sets the starting position of the player
+     * @param x
+     * @param y
+     */
     public void setStartingPosition(int x, int y)
     {
         player.setX(x);
         player.setY(y);
     }
 
+    /**
+     * @return the door entered from
+     */
     public Door getDoorEnteredFrom()
     {
         return doorEnteredFrom;
     }
+
 
     public void setOnLevel(boolean b)
     {
@@ -180,12 +213,11 @@ public class Level {
 
     public Sword getSword()
     {
-        // if(hasSword)
-        // {
-        //     return sword;
-        // }
-        // return null;
-        return sword;
+        if(hasSword)
+        {
+             return sword;
+        }
+        return null;
     }
 
     public ArrayList<Door> getDoors()
