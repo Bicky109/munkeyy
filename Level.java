@@ -13,6 +13,7 @@ public class Level {
     private int nextLevelNumUp;
     private int nextLevelNumRight;
     private int nextLevelNumDown;
+    private Door doorEnteredFrom;
     private boolean hasSword;
     private ArrayList<Door> doors = new ArrayList<Door>();
 
@@ -51,42 +52,18 @@ public class Level {
         imageName = theImageName;
     }
 
-    //pass in level constructor
-    public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown, Player p, int playerX, int playerY, Lives l, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown, boolean doesHaveSword, String theImageName)
+    public void updateValues(Player p, Lives l, Door d)
     {
-        up = down = left = right = x = false;
-
-        this.levelNum = levelNum;
-        this.nextLevelNumLeft = nextLevelNumLeft;
-        this.nextLevelNumUp = nextLevelNumUp;
-        this.nextLevelNumRight = nextLevelNumRight;
-        this.nextLevelNumDown = nextLevelNumDown;
-
         player = p;
-        p.setX(playerX);
-        p.setY(playerY);
-
         lives = l;
-        hasSword = doesHaveSword;
-        if(doorLeft)
-        {
-            doors.add(new LeftDoor(60, 334, 50, 50));
-        }
-        if(doorUp)
-        {
-            //doors.add(new UpDoor(200, 0, 200, 50));
-        }
-        if(doorRight)
-        {
-            doors.add(new RightDoor(1170, 334, 50, 50));
-        }
-        if(doorDown)
-        {
-            //doors.add(new DownDoor(200, 450, 200, 50));
-        }
-        imageName = theImageName;
+        doorEnteredFrom = d;
     }
 
+    public void setStartingPosition(int x, int y)
+    {
+        player.setX(x);
+        player.setY(y);
+    }
 
     public void setOnLevel(boolean b)
     {
@@ -122,6 +99,11 @@ public class Level {
     public boolean getDown()
     {
         return down;
+    }
+
+    public boolean hasSword()
+    {
+        return hasSword;
     }
 
     public Enemy getEnemy(int i)

@@ -209,11 +209,13 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         // if(levels.get(getCurrentLevel()).getPlayer().getRect().intersects(goal)) {
         // onWin();
         // }
-
-        if (levels.get(getCurrentLevel()).getPlayer().getRect()
-                .intersects(levels.get(getCurrentLevel()).getSword().getRect())) {
-            levels.get(getCurrentLevel()).getPlayer().getSword();
-            levels.get(getCurrentLevel()).getSword().getSword();
+        if(level.get(getCurrentLevel()).hasSword())
+        {
+            if (levels.get(getCurrentLevel()).getPlayer().getRect()
+                    .intersects(levels.get(getCurrentLevel()).getSword().getRect())) {
+                levels.get(getCurrentLevel()).getPlayer().getSword();
+                levels.get(getCurrentLevel()).getSword().getSword();
+            }
         }
 
         if (levels.get(getCurrentLevel()).getPlayer().getSFCount() >= 0) {
@@ -239,7 +241,12 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 if (D.intersects(levels.get(getCurrentLevel()).getPlayer().getRect())) {
                     System.out.println("Door");
                     D.use();
+                    Player tempPlayer = levels.get(getCurrentLevel()).getPlayer();
+                    Lives tempLives = levels.get(getCurrentLevel()).getLives();
+                    Door doorEnteredFrom = D;
                     levels.get(levels.get(getCurrentLevel()).getNextLevel(D) - 1).setOnLevel(true);
+                    levels.get(getCurrentLevel()).updateValues(tempPlayer, tempLives, doorEnteredFrom);
+                    levels.get(getCurrentLevel()).setStartingPosition();
                 }
 
             }
@@ -316,15 +323,21 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
 
         // swordTest
-        g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
-                levels.get(getCurrentLevel()).getSword().getWidth(),
-                levels.get(getCurrentLevel()).getSword().getHeight());
+        if(level.get(getCurrentLevel()).hasSword())
+        {
+            g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
+                    levels.get(getCurrentLevel()).getSword().getWidth(),
+                    levels.get(getCurrentLevel()).getSword().getHeight());
+        }
 
         // draws sword
-        g.drawImage(levels.get(getCurrentLevel()).getSword().getImage(),
-                levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
-                levels.get(getCurrentLevel()).getSword().getWidth(),
-                levels.get(getCurrentLevel()).getSword().getHeight(), null);
+        if(level.get(getCurrentLevel()).hasSword())
+        {
+            g.drawImage(levels.get(getCurrentLevel()).getSword().getImage(),
+                    levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
+                    levels.get(getCurrentLevel()).getSword().getWidth(),
+                    levels.get(getCurrentLevel()).getSword().getHeight(), null);
+        }
         // draws player
         g.drawImage(levels.get(getCurrentLevel()).getPlayer().getImage(),
                 levels.get(getCurrentLevel()).getPlayer().getX() - 58,
