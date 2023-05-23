@@ -300,7 +300,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         // doorsTest
         g.setColor(Color.BLUE);
         g.drawRect(60, 334, 50, 50);
+        g.drawRect(590, 60, 50, 50);
         g.drawRect(1170, 334, 50, 50);
+        g.drawRect(590, 610, 50, 50);
 
         // draws lives background
         g.setColor(Color.WHITE);

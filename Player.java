@@ -118,6 +118,10 @@ public class Player {
         fCount = 30;
     }
 
+    public void setImageName(String name) {
+        imageName = name;
+    }
+
     public int getFCount() {
         return fCount;
     }

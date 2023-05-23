@@ -39,7 +39,7 @@ public class Level {
         }
         if(doorUp)
         {
-            //doors.add(new UpDoor(200, 0, 200, 50));
+            doors.add(new UpDoor(590, 60, 50, 50));
         }
         if(doorRight)
         {
@@ -47,7 +47,7 @@ public class Level {
         }
         if(doorDown)
         {
-            //doors.add(new DownDoor(200, 450, 200, 50));
+            doors.add(new DownDoor(590, 610, 50, 50));
         }
         imageName = theImageName;
     }
@@ -61,7 +61,54 @@ public class Level {
 
     public void setStartingPosition()
     {
-
+        if(this.getDoorEnteredFrom() instanceof LeftDoor)
+        {
+            setStartingPosition(110,334);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerright.png");
+            }
+            else
+            {
+                player.setImageName("images/playerright.png");
+            }
+        }
+        else if(this.getDoorEnteredFrom() instanceof UpDoor)
+        {
+            setStartingPosition(590,110);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerdown.png");
+            }
+            else
+            {
+                player.setImageName("images/playerdownnosword.png");
+            }
+        }
+        else if(this.getDoorEnteredFrom() instanceof RightDoor)
+        {
+            setStartingPosition(1170,334);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerleft.png");
+            }
+            else
+            {
+                player.setImageName("images/playerleftnosword.png");
+            }
+        }
+        else if(this.getDoorEnteredFrom() instanceof DownDoor)
+        {
+            setStartingPosition(590,610);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerup.png");
+            }
+            else
+            {
+                player.setImageName("images/playerupnosword.png");
+            }
+        }
     }
 
     public void setStartingPosition(int x, int y)
