@@ -6,13 +6,6 @@ import java.util.ArrayList;
 
 public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
-    // private Player player; //a rectangle that represents the player
-    // private Rectangle goal = new Rectangle(); //a rectangle that represents the goal
-    // private Sword sword;
-    // private Lives lives;
-    // private Enemy[] enemies = new Enemy[7]; //the array of Enemy objects
-    // private Level[] levels = new Levels[9];
-
     private ArrayList<Level> levels = new ArrayList<Level>();
 
     // private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
@@ -332,9 +325,19 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         
         g.drawImage(levels.get(getCurrentLevel()).getImage(),0, 0,gameWidth,gameHeight,null);
         
+        //livesbackground
+        g.setColor(Color.WHITE);
+        g.fillRect(7,10,140,44);
+        g.setColor(Color.BLACK);
+        g.drawRect(7,10,140,44);
+
         g.setColor(Color.RED);
         g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() , levels.get(getCurrentLevel()).getPlayer().getY(), levels.get(getCurrentLevel()).getPlayer().getWidth(),levels.get(getCurrentLevel()).getPlayer().getHeight());
-        //g.drawRect(player.getX() - 60, player.getY() + 13, 75,50);
+        
+        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() -5, levels.get(getCurrentLevel()).getPlayer().getY() - 60, 60,75);
+        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 5, levels.get(getCurrentLevel()).getPlayer().getY() + 60, 60,75);
+        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 70, levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75,60);
+        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 45, levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75,60);
         //g.drawRect(sword.getX(), sword.getY(), sword.getWidth(), sword.getHeight());
         
         //g.drawImage(get1Image(),goal.x - 15, goal.y - 20, 50, 50,null);

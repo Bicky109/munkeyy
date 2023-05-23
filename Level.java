@@ -20,7 +20,7 @@ public class Level {
         up = down = left = right = x = false;
 
         player = new Player(playerX, playerY,50,60);
-        lives = new Lives(400,400,128,128);
+        lives = new Lives(15,15,128,128);
         hasSword = doesHaveSword;
         if(doorLeft)
         {

@@ -38,22 +38,22 @@ public class Player {
         if (hasSword) {
             isAttacking = true;
             if (imageName.equals("images/playerup.png")) {
-                sword = new Rectangle(player.x + 15, player.y - 50, 60, 75);
+                sword = new Rectangle(player.x -5, player.y - 60, 60, 75);
                 imageName = "images/playerswordup.png";
                 SFCount = 8;
                 canX = false;
             } else if (imageName.equals("images/playerdown.png")) {
-                sword = new Rectangle(player.x + 22, player.y + 75, 50, 70);
+                sword = new Rectangle(player.x + 5, player.y + 60, 60, 75);
                 imageName = "images/playersworddown.png";
                 SFCount = 8;
                 canX = false;
             } else if (imageName.equals("images/playerleft.png")) {
-                sword = new Rectangle(player.x - 60, player.y + 13, 75, 50);
+                sword = new Rectangle(player.x - 70, player.y + 5, 75, 60);
                 imageName = "images/playerswordleft.png";
                 SFCount = 8;
                 canX = false;
             } else if (imageName.equals("images/playerright.png")) {
-                sword = new Rectangle(player.x + 75, player.y + 30, 50, 30);
+                sword = new Rectangle(player.x + 45, player.y + 5, 75, 60);
                 imageName = "images/playerswordright.png";
                 SFCount = 8;
                 canX = false;
