@@ -4,5 +4,8 @@ public class RightDoor extends Door {
         super(x, y, width, height);
     }
 
+    public String getName() {
+        return "RightDoor";
+    }
 
 }

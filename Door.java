@@ -2,7 +2,7 @@ import java.awt.Rectangle;
 public abstract class Door {
     private Rectangle rect;
     private boolean canUse;
-    private int fCount = 30;
+    private int fCount = 50;
 
     public Door(int x, int y, int width, int height) {
         rect = new Rectangle(x, y, width, height);
@@ -33,7 +33,7 @@ public abstract class Door {
 
     public void use() {
         canUse = false;
-        fCount = 30;
+        fCount = 50;
     }
 
     public int getFCount() {
@@ -42,5 +42,13 @@ public abstract class Door {
 
     public void fCount() {
         fCount--;
+    }
+
+    public boolean intersects(Rectangle p) {
+        return rect.intersects(p);
+    }
+
+    public String getName() {
+        return "Door";
     }
 }
