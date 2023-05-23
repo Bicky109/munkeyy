@@ -81,6 +81,153 @@ public class Level {
     }
 
     /**
+     * @param d the door to check
+     * @return the level number of the next level based on the door entered
+     */
+    public int getNextLevel(Door d)
+    {
+        onLevel = false;
+        this.clear();
+        if(d.getName().equals("LeftDoor") && nextLevelNumLeft != -1)
+        {
+            return nextLevelNumLeft;
+        }
+        else if(d.getName().equals("UpDoor") && nextLevelNumUp != -1)
+        {
+            return nextLevelNumUp;
+        }
+        else if(d.getName().equals("RightDoor") && nextLevelNumRight != -1)
+        {
+            return nextLevelNumRight;
+        }
+        else if(d.getName().equals("DownDoor") && nextLevelNumDown != -1)
+        {
+            return nextLevelNumDown;
+        }
+        return 0;
+    }
+
+    /**
+     * @return array of enemies
+     */
+    public Enemy[] getEnemies()
+    {
+        return enemies;
+    }
+    /**
+     * @param i the index of the enemy
+     * @return the enemy at the index
+     */
+    public Enemy getEnemy(int i)
+    {
+        return enemies[i];
+    }
+
+    /**
+     * @return wether x is pressed
+     */
+    public boolean getX()
+    {
+        return x;
+    }
+    /**
+     * @return wether left is pressed
+     */
+    public boolean getLeft()
+    {
+        return left;
+    }
+    /**
+     * @return wether right is pressed
+     */
+    public boolean getRight()
+    {
+        return right;
+    }
+    /**
+     * @return wether up is pressed
+     */
+    public boolean getUp()
+    {
+        return up;
+    }
+    /**
+     * @return wether down is pressed
+     */
+    public boolean getDown()
+    {
+        return down;
+    }
+
+    /**
+     * @return the player
+     */
+    public Player getPlayer()
+    {
+        return player;
+    }
+
+    /**
+     * @return the lives
+     */
+    public Lives getLives()
+    {
+        return lives;
+    }
+
+    /**
+     * @return the sword
+     */
+    public Sword getSword()
+    {
+        if(hasSword)
+        {
+             return sword;
+        }
+        return null;
+    }
+    
+
+    /**
+     * @return an array list of doors
+     */
+    public ArrayList<Door> getDoors()
+    {
+        return doors;
+    }
+
+    /**
+     * @return the door entered from
+     */
+    public Door getDoorEnteredFrom()
+    {
+        return doorEnteredFrom;
+    }
+
+    /**
+     * @return wether the level has a sword
+     */
+    public boolean hasSword()
+    {
+        return hasSword;
+    }
+
+    /**
+     * @return if the player is on the level
+     */
+    public boolean onLevel()
+    {
+        return onLevel;
+    }
+
+    /**
+     * @return the image level background image
+     */
+    public Image getImage() {
+        return ImageLoader.loadCompatibleImage(imageName);
+    }
+
+    /**
      * Sets starting location of player based on which door they entered from
      */
     public void setStartingPosition()
@@ -147,147 +294,72 @@ public class Level {
     }
 
     /**
-     * @return the door entered from
+     * @param b boolean to set the level to
      */
-    public Door getDoorEnteredFrom()
-    {
-        return doorEnteredFrom;
-    }
-
-
     public void setOnLevel(boolean b)
     {
         onLevel = b;
     }
 
-    public Lives getLives()
-    {
-        return lives;
-    }
-
-    public Enemy[] getEnemies()
-    {
-        return enemies;
-    }
-
-    public boolean getX()
-    {
-        return x;
-    }
-    public boolean getLeft()
-    {
-        return left;
-    }
-    public boolean getRight()
-    {
-        return right;
-    }
-    public boolean getUp()
-    {
-        return up;
-    }
-    public boolean getDown()
-    {
-        return down;
-    }
-
-    public boolean hasSword()
-    {
-        return hasSword;
-    }
-
-    public Enemy getEnemy(int i)
-    {
-        return enemies[i];
-    }
-
+    /**
+     * @param i the index of the enemy
+     * @param e the enemy to set
+     */
     public void setEnemy(int i, Enemy e)
     {
         enemies[i] = e;
     }
 
-    public Player getPlayer()
-    {
-        return player;
-    }
-
-    public Sword getSword()
-    {
-        if(hasSword)
-        {
-             return sword;
-        }
-        return null;
-    }
-
-    public ArrayList<Door> getDoors()
-    {
-        return doors;
-    }
-
-    public boolean onLevel()
-    {
-        return onLevel;
-    }
-
+    /**
+     * @param s the sword to set
+     */
     public void setSword(Sword s)
     {
         sword = s;
     }
 
-    public void clear()
-    {
-        up = down = left = right = x = false;
-    }
-
+    /**
+     * @param b boolean to set X to
+     */
     public void setX(boolean b)
     {
         x = b;
     }
+    /**
+     * @param b boolean to set left to
+     */
     public void setLeft(boolean b)
     {
         left = b;
     }
+    /**
+     * @param b boolean to set right to
+     */
     public void setRight(boolean b)
     {
         right = b;
     }
+    /**
+     * @param b boolean to set up to
+     */
     public void setUp(boolean b)
     {
         up = b;
     }
+    /**
+     * @param b boolean to set down to
+     */
     public void setDown(boolean b)
     {
         down = b;
     }
 
-    public int getNextLevel(Door d)
+    /**
+     * resets all the booleans to false
+     */
+    public void clear()
     {
-        onLevel = false;
-        this.clear();
-        if(d.getName().equals("LeftDoor") && nextLevelNumLeft != -1)
-        {
-            return nextLevelNumLeft;
-        }
-        else if(d.getName().equals("UpDoor") && nextLevelNumUp != -1)
-        {
-            return nextLevelNumUp;
-        }
-        else if(d.getName().equals("RightDoor") && nextLevelNumRight != -1)
-        {
-            return nextLevelNumRight;
-        }
-        else if(d.getName().equals("DownDoor") && nextLevelNumDown != -1)
-        {
-            return nextLevelNumDown;
-        }
-        return 0;
+        up = down = left = right = x = false;
     }
-
-
-    public Image getImage() {
-        return ImageLoader.loadCompatibleImage(imageName);
-    }
-   
 
 }
