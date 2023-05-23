@@ -18,6 +18,7 @@ public class Level {
 
     private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
 
+    // new level consturcotr
     public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown, int playerX, int playerY, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown, boolean doesHaveSword, String theImageName)
     {
         up = down = left = right = x = false;
@@ -30,6 +31,42 @@ public class Level {
 
         player = new Player(playerX, playerY,50,60);
         lives = new Lives(15,15,128,128);
+        hasSword = doesHaveSword;
+        if(doorLeft)
+        {
+            doors.add(new LeftDoor(60, 334, 50, 50));
+        }
+        if(doorUp)
+        {
+            //doors.add(new UpDoor(200, 0, 200, 50));
+        }
+        if(doorRight)
+        {
+            doors.add(new RightDoor(1170, 334, 50, 50));
+        }
+        if(doorDown)
+        {
+            //doors.add(new DownDoor(200, 450, 200, 50));
+        }
+        imageName = theImageName;
+    }
+
+    //pass in level constructor
+    public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown, Player p, int playerX, int playerY, Lives l, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown, boolean doesHaveSword, String theImageName)
+    {
+        up = down = left = right = x = false;
+
+        this.levelNum = levelNum;
+        this.nextLevelNumLeft = nextLevelNumLeft;
+        this.nextLevelNumUp = nextLevelNumUp;
+        this.nextLevelNumRight = nextLevelNumRight;
+        this.nextLevelNumDown = nextLevelNumDown;
+
+        player = p;
+        p.setX(playerX);
+        p.setY(playerY);
+
+        lives = l;
         hasSword = doesHaveSword;
         if(doorLeft)
         {
