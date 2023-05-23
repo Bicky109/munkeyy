@@ -1,18 +1,21 @@
 
 import java.awt.*;
 import javax.swing.*;
-
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
-    private Player player; //a rectangle that represents the player
-    private Rectangle goal = new Rectangle(); //a rectangle that represents the goal
-    private Sword sword;
-    private Lives lives;
-    private Enemy[] enemies = new Enemy[7]; //the array of Enemy objects
-    //private Level[] levels = new Level[9]; //number of levels
-    private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
+    // private Player player; //a rectangle that represents the player
+    // private Rectangle goal = new Rectangle(); //a rectangle that represents the goal
+    // private Sword sword;
+    // private Lives lives;
+    // private Enemy[] enemies = new Enemy[7]; //the array of Enemy objects
+    // private Level[] levels = new Levels[9];
+
+    private ArrayList<Level> levels = new ArrayList<Level>();
+
+    // private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
     private Timer timer; //the update timer
    
     private int gameWidth = 1280; //the width of the game area
@@ -48,7 +51,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         frame.pack();
        
         game.setUpGame();
-        // game.enterFullScreen();
+        //game.enterFullScreen();
     }
    
     //Constructor for the game panel
@@ -67,26 +70,30 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     //Stores the down state for use in the update method
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_X) {
-            if(player.getCanX())
+            if(levels.get(getCurrentLevel()).getPlayer().getCanX())
             {
-                x = true;
+                levels.get(getCurrentLevel()).setX(true);
             }
             else
             {
-                x = false;
+                levels.get(getCurrentLevel()).setX(true);
             }
         }
         else if(e.getKeyCode() == KeyEvent.VK_UP||e.getKeyCode() == KeyEvent.VK_W) {
-            up = true;
+            levels.get(getCurrentLevel()).setUp(true);
+
         }
         else if(e.getKeyCode() == KeyEvent.VK_DOWN||e.getKeyCode() == KeyEvent.VK_S) {
-            down = true;
+            levels.get(getCurrentLevel()).setDown(true);
+
         }
         else if(e.getKeyCode() == KeyEvent.VK_LEFT||e.getKeyCode() == KeyEvent.VK_A) {
-            left = true;
+            levels.get(getCurrentLevel()).setLeft(true);
+
         }
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT||e.getKeyCode() == KeyEvent.VK_D) {
-            right = true;
+            levels.get(getCurrentLevel()).setRight(true);
+
         }
     }
    
@@ -95,19 +102,19 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_X)
         {
-                x = false;
+            levels.get(getCurrentLevel()).setX(false);
         }
         else if(e.getKeyCode() == KeyEvent.VK_UP||e.getKeyCode() == KeyEvent.VK_W) {
-            up = false;
+            levels.get(getCurrentLevel()).setUp(false);
         }
         else if(e.getKeyCode() == KeyEvent.VK_DOWN||e.getKeyCode() == KeyEvent.VK_S) {
-            down = false;
+            levels.get(getCurrentLevel()).setDown(false);
         }
         else if(e.getKeyCode() == KeyEvent.VK_LEFT||e.getKeyCode() == KeyEvent.VK_A) {
-            left = false;
+            levels.get(getCurrentLevel()).setLeft(false);
         }
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT||e.getKeyCode() == KeyEvent.VK_D) {
-            right = false;
+            levels.get(getCurrentLevel()).setRight(false);
         }
     }
    
@@ -118,34 +125,18 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     //Sets the initial state of the game
     //Could be modified to allow for multiple levels
     public void setUpGame() {
-   
+        levels.add(new Level1());
         if(timer != null) {
             timer.stop();
         }
    
         timer = new Timer(1000 / 30, this); //roughly 30 frames per second
         timer.start();
-       
-        up = down = left = right = false;
-   
-        player = new Player(215,315,50,60);
-        sword = new Sword(980,422,60,80);
-        lives = new Lives(400,400,128,128);
-        //goal = new Rectangle(400, 300, 20, 20);
-           
-        
-        //levels[0] = new Level(); //create level  string image name
-        
-        enemies[0] = new StillEnemy(250, 250, 40, 40,2);
-        //enemies[1] = new VerticalEnemy(200, 100, 40, 20, gameHeight, 4);
-        //enemies[2] = new DiagonalEnemy(300, 300, 20, 20, gameHeight, 1, gameWidth, 1);
-        //enemies[3] = new StalkerEnemy(100, 200, 20, 20, player.getRect());
-        //enemies[4] = new SwingingEnemy(400, 100, 20, 20, 50);
-        //enemies[5] = new SporeEnemy(400,75,20,20,20,9);
-        //enemies[6] = new SporeEnemy(75,250,20,20,20,9);
+        levels.get(getCurrentLevel()).clear();
+        //update();
         
     }
-   
+
     private void enterFullScreen() {
         GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice device = graphicsEnvironment.getDefaultScreenDevice();
@@ -155,6 +146,19 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
     }
    
+
+    public int getCurrentLevel()
+    {
+        for(int i = 0; i < levels.size(); i++)
+        {
+            if(levels.get(i).onLevel())
+            {
+                return i;
+            }
+        }
+            return 0;
+    }
+
     //The update method does 5 things
     //1 - it has the player move based on what key is currently being pressed
     //2 - it prevents the player from leaving the screen
@@ -162,106 +166,148 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     //4 - it checks if any of the Enemy objects are touching the player, and if so notifies the player of their defeat and restarts the game
     //5 - it tells each of the Enemy objects to update()
     public void update() {
-        if(x && player.getHasSword())
+
+        levelUpdate();
+
+        playerUpdate();
+
+        if(levels.get(getCurrentLevel()).getLives().getFCount() >= 0)
         {
-            player.attack();
-        }
-        else if(up && right)
-        {
-            player.diagUpRight();
-        }
-        else if(up && left)
-        {
-            player.diagUpLeft();
-        }
-        else if(down && right)
-        {
-            player.diagDownRight();
-        }
-        else if(down && left)
-        {
-            player.diagDownLeft();
-        }
-        else if(up) {
-            player.up();
-        }
-        else if(down) {
-            player.down();
-        }
-        else if(left) {
-            player.left();
-        }
-        else if(right) {
-            player.right();
+            levels.get(getCurrentLevel()).getLives().fCount();
         }
         
-        if(player.getX() < 0) {
-            player.setX(0);
-        }
-        else if(player.getX() + player.getWidth() > gameWidth) {
-            player.setX(gameWidth - player.getWidth());
+        enemyUpdate();
+
+        if(levels.get(getCurrentLevel()).getLives().getLifeCount() <= 0)
+        {
+            onLose();
         }
        
-        if(player.getY() < 0) {
-            player.setY(0);
+    }
+
+    public void playerUpdate()
+    {
+        if(levels.get(getCurrentLevel()).getX() && levels.get(getCurrentLevel()).getPlayer().getHasSword())
+        {
+            levels.get(getCurrentLevel()).getPlayer().attack();
         }
-        else if(player.getY() + player.getHeight() > gameHeight) {
-            player.setY(gameHeight - player.getHeight());
+        else if(levels.get(getCurrentLevel()).getUp() && levels.get(getCurrentLevel()).getRight())
+        {
+            levels.get(getCurrentLevel()).getPlayer().diagUpRight();
+        }
+        else if(levels.get(getCurrentLevel()).getUp() && levels.get(getCurrentLevel()).getLeft())
+        {
+            levels.get(getCurrentLevel()).getPlayer().diagUpLeft();
+        }
+        else if(levels.get(getCurrentLevel()).getDown() && levels.get(getCurrentLevel()).getRight())
+        {
+            levels.get(getCurrentLevel()).getPlayer().diagDownRight();
+        }
+        else if(levels.get(getCurrentLevel()).getDown() && levels.get(getCurrentLevel()).getLeft())
+        {
+            levels.get(getCurrentLevel()).getPlayer().diagDownLeft();
+        }
+        else if(levels.get(getCurrentLevel()).getUp()) {
+            levels.get(getCurrentLevel()).getPlayer().up();
+        }
+        else if(levels.get(getCurrentLevel()).getDown()) {
+            levels.get(getCurrentLevel()).getPlayer().down();
+        }
+        else if(levels.get(getCurrentLevel()).getLeft()) {
+            levels.get(getCurrentLevel()).getPlayer().left();
+        }
+        else if(levels.get(getCurrentLevel()).getRight()) {
+            levels.get(getCurrentLevel()).getPlayer().right();
+        }
+        
+        if(levels.get(getCurrentLevel()).getPlayer().getX() < 0) {
+            levels.get(getCurrentLevel()).getPlayer().setX(0);
+        }
+        else if(levels.get(getCurrentLevel()).getPlayer().getX() + levels.get(getCurrentLevel()).getPlayer().getWidth() > gameWidth) {
+            levels.get(getCurrentLevel()).getPlayer().setX(gameWidth - levels.get(getCurrentLevel()).getPlayer().getWidth());
         }
        
-        if(player.getRect().intersects(goal)) {
-            onWin();
+        if(levels.get(getCurrentLevel()).getPlayer().getY() < 0) {
+            levels.get(getCurrentLevel()).getPlayer().setY(0);
         }
+        else if(levels.get(getCurrentLevel()).getPlayer().getY() + levels.get(getCurrentLevel()).getPlayer().getHeight() > gameHeight) {
+            levels.get(getCurrentLevel()).getPlayer().setY(gameHeight - levels.get(getCurrentLevel()).getPlayer().getHeight());
+        }
+       
+        // if(levels.get(getCurrentLevel()).getPlayer().getRect().intersects(goal)) {
+        //     onWin();
+        // }
         
-        if(player.getRect().intersects(sword.getRect()))
+        if(levels.get(getCurrentLevel()).getPlayer().getRect().intersects(levels.get(getCurrentLevel()).getSword().getRect()))
         {
-            player.getSword();
-            sword.getSword();
+            levels.get(getCurrentLevel()).getPlayer().getSword();
+            levels.get(getCurrentLevel()).getSword().getSword();
         }
-        
-        
-        if(lives.getFCount() >= 0)
+
+        if(levels.get(getCurrentLevel()).getPlayer().getSFCount() >= 0)
         {
-            lives.fCount();
+            levels.get(getCurrentLevel()).getPlayer().SFCount();
         }
         
-        if(player.getSFCount() >= 0)
+        if(levels.get(getCurrentLevel()).getPlayer().getFCount() >= 0)
         {
-            player.SFCount();
+            levels.get(getCurrentLevel()).getPlayer().fCount();
         }
-        
-        if(player.getFCount() >= 0)
-        {
-            player.fCount();
-        }
+
+    }
+    
+    public void levelUpdate()
+    {
+            for(Door D: levels.get(getCurrentLevel()).getDoors())
+            {
+                if(D == null)
+                    continue;
+
+                if(D.getFCount() >= 0)
+                {
+                    D.fCount();
+                }
+
+                if(D.canUse())
+                {
+                    //D.intersects(levels.get(getCurrentLevel()).getPlayer().getRect());
+                    System.out.println("Door");
+                    D.use();
+                    //levels.get(getCurrentLevel()).getNextLevel();
+                }
+            }
+    }
+
+    public void enemyUpdate()
+    {
         int count = -1;
-        for(Enemy e: enemies) {
+        for(Enemy e: levels.get(getCurrentLevel()).getEnemies()) {
             count++;
             if(e == null)
                 continue;
             e.move();
-            if(lives.getLifeCount() > 0)
+            if(levels.get(getCurrentLevel()).getLives().getLifeCount() > 0)
             {
-                if(player.canGetHit())
+                if(levels.get(getCurrentLevel()).getPlayer().canGetHit())
                 {
-                    if(e.intersects(player.getRect())) {
-                        player.hit();
-                        lives.startFCount();
+                    if(e.intersects(levels.get(getCurrentLevel()).getPlayer().getRect())) {
+                        levels.get(getCurrentLevel()).getPlayer().hit();
+                        levels.get(getCurrentLevel()).getLives().startFCount();
                     }
                 }
-                if(e.intersects(player.getRect()))
+                if(e.intersects(levels.get(getCurrentLevel()).getPlayer().getRect()))
                 {
-                    player.bounce();   
+                    levels.get(getCurrentLevel()).getPlayer().bounce();   
                 }
             }
             try{
-                if(e.canGetHit() && player.getHasSword() && e.getLives() > 0)
+                if(e.canGetHit() && levels.get(getCurrentLevel()).getPlayer().getHasSword() && e.getLives() > 0)
                 {
-                    if(e.intersects(player.getRectSword()))
+                    if(e.intersects(levels.get(getCurrentLevel()).getPlayer().getRectSword()))
                     {
                         e.hit();
                         System.out.println("gotHit");
-                        enemies[count] = e.checkLives(e);
+                        levels.get(getCurrentLevel()).setEnemy(count, e.checkLives(e));
                     }
                 }
                 }
@@ -273,18 +319,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             {
                 e.fCount();
             }
-            
         }
-        if(lives.getLifeCount() <= 0)
-        {
-            onLose();
-        }
-       
     }
-    
-    public Image get1Image(){
-        return ImageLoader.loadCompatibleImage("images/swordroom.png");
-    }
+
 
     //The paint method does 3 things
     //1 - it draws a white background
@@ -293,10 +330,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     //4 - it draws all the Enemy objects
     public void paint(Graphics g) {
         
-        g.drawImage(get1Image(),0, 0,gameWidth,gameHeight,null);
+        g.drawImage(levels.get(getCurrentLevel()).getImage(),0, 0,gameWidth,gameHeight,null);
         
         g.setColor(Color.RED);
-        g.drawRect(player.getX() , player.getY(), player.getWidth(),player.getHeight());
+        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() , levels.get(getCurrentLevel()).getPlayer().getY(), levels.get(getCurrentLevel()).getPlayer().getWidth(),levels.get(getCurrentLevel()).getPlayer().getHeight());
         //g.drawRect(player.getX() - 60, player.getY() + 13, 75,50);
         //g.drawRect(sword.getX(), sword.getY(), sword.getWidth(), sword.getHeight());
         
@@ -305,11 +342,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         //g.fillRect(goal.x, goal.y, goal.width, goal.height);
         
         //draws player
-        g.drawImage(sword.getImage(),sword.getX() , sword.getY(), sword.getWidth(), sword.getHeight(),null);   
-        g.drawImage(player.getImage(),player.getX()-58, player.getY() - 52, 168, 168,null);
-        g.drawImage(lives.getImage(),lives.getX() , lives.getY(), lives.getWidth(), lives.getHeight(),null);   
+        g.drawImage(levels.get(getCurrentLevel()).getSword().getImage(),levels.get(getCurrentLevel()).getSword().getX() , levels.get(getCurrentLevel()).getSword().getY(), levels.get(getCurrentLevel()).getSword().getWidth(), levels.get(getCurrentLevel()).getSword().getHeight(),null);   
+        g.drawImage(levels.get(getCurrentLevel()).getPlayer().getImage(),levels.get(getCurrentLevel()).getPlayer().getX()-58, levels.get(getCurrentLevel()).getPlayer().getY() - 52, 168, 168,null);
+        g.drawImage(levels.get(getCurrentLevel()).getLives().getImage(),levels.get(getCurrentLevel()).getLives().getX() , levels.get(getCurrentLevel()).getLives().getY(), levels.get(getCurrentLevel()).getLives().getWidth(), levels.get(getCurrentLevel()).getLives().getHeight(),null);   
             
-        for(Enemy e: enemies) {
+        for(Enemy e: levels.get(getCurrentLevel()).getEnemies()) {
             if(e == null)
                 continue;
             e.draw(g);
@@ -317,13 +354,13 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     }
    
     private void onWin() {
-        up = down = left = right = false;
+        levels.get(getCurrentLevel()).clear();
         createDialog("You Won!", 2000);
         setUpGame();
     }
    
     private void onLose() {
-        up = down = left = right = false;
+        levels.get(getCurrentLevel()).clear();
         createDialog("You Lost", 1250);
         setUpGame();
     }
