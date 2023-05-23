@@ -209,7 +209,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         // if(levels.get(getCurrentLevel()).getPlayer().getRect().intersects(goal)) {
         // onWin();
         // }
-        if(level.get(getCurrentLevel()).hasSword())
+        if(levels.get(getCurrentLevel()).hasSword())
         {
             if (levels.get(getCurrentLevel()).getPlayer().getRect()
                     .intersects(levels.get(getCurrentLevel()).getSword().getRect())) {
@@ -323,7 +323,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
 
         // swordTest
-        if(level.get(getCurrentLevel()).hasSword())
+        if(levels.get(getCurrentLevel()).hasSword())
         {
             g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
                     levels.get(getCurrentLevel()).getSword().getWidth(),
@@ -331,7 +331,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
 
         // draws sword
-        if(level.get(getCurrentLevel()).hasSword())
+        if(levels.get(getCurrentLevel()).hasSword())
         {
             g.drawImage(levels.get(getCurrentLevel()).getSword().getImage(),
                     levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),

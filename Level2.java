@@ -12,19 +12,19 @@ public class Level2 extends Level {
 
     public void setStartingPosition()
     {
-        if(this.doorEnteredFrom instanceof LeftDoor)
+        if(this.getDoorEnteredFrom() instanceof LeftDoor)
         {
             setStartingPosition(110,334);
         }
-        else if(this.doorEnteredFrom instanceof UpDoor)
+        else if(this.getDoorEnteredFrom() instanceof UpDoor)
         {
             setStartingPosition(590,110);
         }
-        else if(this.doorEnteredFrom instanceof RightDoor)
+        else if(this.getDoorEnteredFrom() instanceof RightDoor)
         {
             setStartingPosition(1170,334);
         }
-        else if(this.doorEnteredFrom instanceof DownDoor)
+        else if(this.getDoorEnteredFrom() instanceof DownDoor)
         {
             setStartingPosition(590,610);
         }

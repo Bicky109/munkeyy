@@ -59,10 +59,20 @@ public class Level {
         doorEnteredFrom = d;
     }
 
+    public void setStartingPosition()
+    {
+
+    }
+
     public void setStartingPosition(int x, int y)
     {
         player.setX(x);
         player.setY(y);
+    }
+
+    public Door getDoorEnteredFrom()
+    {
+        return doorEnteredFrom;
     }
 
     public void setOnLevel(boolean b)
