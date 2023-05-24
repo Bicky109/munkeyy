@@ -38,7 +38,7 @@ public class Player {
         if (hasSword) {
             isAttacking = true;
             if (imageName.equals("images/playerup.png")) {
-                sword = new Rectangle(player.x -5, player.y - 60, 60, 75);
+                sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
                 imageName = "images/playerswordup.png";
                 SFCount = 8;
                 canX = false;

@@ -313,9 +313,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
         // playerTest
         g.setColor(Color.RED);
-        //g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX(), levels.get(getCurrentLevel()).getPlayer().getY(),
-        //        levels.get(getCurrentLevel()).getPlayer().getWidth(),
-        //        levels.get(getCurrentLevel()).getPlayer().getHeight());
+        // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX(),
+        // levels.get(getCurrentLevel()).getPlayer().getY(),
+        // levels.get(getCurrentLevel()).getPlayer().getWidth(),
+        // levels.get(getCurrentLevel()).getPlayer().getHeight());
         // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 5,
         // levels.get(getCurrentLevel()).getPlayer().getY() - 60, 60, 75);
         // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 5,

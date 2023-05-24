@@ -1,13 +1,14 @@
 import java.awt.*;
 import java.util.ArrayList;
+
 public class Level {
 
-    private Player player; //a rectangle that represents the player
+    private Player player; // a rectangle that represents the player
     private Sword sword;
     private Lives lives;
-    private Enemy[] enemies = new Enemy[7]; //the array of Enemy objects
-    private String imageName; //the name of the image to use for the level
-    private boolean onLevel; //a boolean that tracks whether the player is on the level
+    private Enemy[] enemies = new Enemy[7]; // the array of Enemy objects
+    private String imageName; // the name of the image to use for the level
+    private boolean onLevel; // a boolean that tracks whether the player is on the level
     private int levelNum;
     private int nextLevelNumLeft;
     private int nextLevelNumUp;
@@ -17,26 +18,28 @@ public class Level {
     private boolean hasSword;
     private ArrayList<Door> doors = new ArrayList<Door>();
 
-    private boolean up, down, left, right, x; //booleans that track which keys are currently pressed
+    private boolean up, down, left, right, x; // booleans that track which keys are currently pressed
 
     /**
      * Constructor for objects of class Level
-     * @param levelNum the level number
-     * @param nextLevelNumLeft the level number of the level to the left
-     * @param nextLevelNumUp the level number of the level above
+     * 
+     * @param levelNum          the level number
+     * @param nextLevelNumLeft  the level number of the level to the left
+     * @param nextLevelNumUp    the level number of the level above
      * @param nextLevelNumRight the level number of the level to the right
-     * @param nextLevelNumDown the level number of the level below
-     * @param playerX player's x position
-     * @param playerY player's y position
-     * @param doorLeft whether the level has a door left
-     * @param doorUp wether the level has a door up
-     * @param doorRight whether the level has a door right
-     * @param doorDown whether the level has a door down
-     * @param doesHaveSword whether the level has a sword
-     * @param theImageName image name
+     * @param nextLevelNumDown  the level number of the level below
+     * @param playerX           player's x position
+     * @param playerY           player's y position
+     * @param doorLeft          whether the level has a door left
+     * @param doorUp            wether the level has a door up
+     * @param doorRight         whether the level has a door right
+     * @param doorDown          whether the level has a door down
+     * @param doesHaveSword     whether the level has a sword
+     * @param theImageName      image name
      */
-    public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown, int playerX, int playerY, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown, boolean doesHaveSword, String theImageName)
-    {
+    public Level(int levelNum, int nextLevelNumLeft, int nextLevelNumUp, int nextLevelNumRight, int nextLevelNumDown,
+            int playerX, int playerY, boolean doorLeft, boolean doorUp, boolean doorRight, boolean doorDown,
+            boolean doesHaveSword, String theImageName) {
         up = down = left = right = x = false;
 
         this.levelNum = levelNum;
@@ -45,23 +48,19 @@ public class Level {
         this.nextLevelNumRight = nextLevelNumRight;
         this.nextLevelNumDown = nextLevelNumDown;
 
-        player = new Player(playerX, playerY,50,60);
-        lives = new Lives(15,15,128,128);
+        player = new Player(playerX, playerY, 50, 60);
+        lives = new Lives(15, 15, 128, 128);
         hasSword = doesHaveSword;
-        if(doorLeft)
-        {
+        if (doorLeft) {
             doors.add(new LeftDoor(60, 334, 60, 50));
         }
-        if(doorUp)
-        {
+        if (doorUp) {
             doors.add(new UpDoor(615, 60, 50, 60));
         }
-        if(doorRight)
-        {
+        if (doorRight) {
             doors.add(new RightDoor(1160, 334, 60, 50));
         }
-        if(doorDown)
-        {
+        if (doorDown) {
             doors.add(new DownDoor(615, 600, 50, 60));
         }
         imageName = theImageName;
@@ -69,19 +68,18 @@ public class Level {
 
     /**
      * Passes in the player, lives, and door entered from
+     * 
      * @param p the player
      * @param l the lives
      * @param d the door entered from
      */
-    public void updateValues(Player p, Lives l, Door d)
-    {
+    public void updateValues(Player p, Lives l, Door d) {
         player = p;
         lives = l;
         doorEnteredFrom = d;
     }
 
-    public void levelSpecificCollision()
-    {
+    public void levelSpecificCollision() {
 
     }
 
@@ -89,24 +87,16 @@ public class Level {
      * @param d the door to check
      * @return the level number of the next level based on the door entered
      */
-    public int getNextLevel(Door d)
-    {
+    public int getNextLevel(Door d) {
         onLevel = false;
         this.clear();
-        if(d.getName().equals("LeftDoor") && nextLevelNumLeft != -1)
-        {
+        if (d.getName().equals("LeftDoor") && nextLevelNumLeft != -1) {
             return nextLevelNumLeft;
-        }
-        else if(d.getName().equals("UpDoor") && nextLevelNumUp != -1)
-        {
+        } else if (d.getName().equals("UpDoor") && nextLevelNumUp != -1) {
             return nextLevelNumUp;
-        }
-        else if(d.getName().equals("RightDoor") && nextLevelNumRight != -1)
-        {
+        } else if (d.getName().equals("RightDoor") && nextLevelNumRight != -1) {
             return nextLevelNumRight;
-        }
-        else if(d.getName().equals("DownDoor") && nextLevelNumDown != -1)
-        {
+        } else if (d.getName().equals("DownDoor") && nextLevelNumDown != -1) {
             return nextLevelNumDown;
         }
         return 0;
@@ -115,113 +105,102 @@ public class Level {
     /**
      * @return array of enemies
      */
-    public Enemy[] getEnemies()
-    {
+    public Enemy[] getEnemies() {
         return enemies;
     }
+
     /**
      * @param i the index of the enemy
      * @return the enemy at the index
      */
-    public Enemy getEnemy(int i)
-    {
+    public Enemy getEnemy(int i) {
         return enemies[i];
     }
 
     /**
      * @return wether x is pressed
      */
-    public boolean getX()
-    {
+    public boolean getX() {
         return x;
     }
+
     /**
      * @return wether left is pressed
      */
-    public boolean getLeft()
-    {
+    public boolean getLeft() {
         return left;
     }
+
     /**
      * @return wether right is pressed
      */
-    public boolean getRight()
-    {
+    public boolean getRight() {
         return right;
     }
+
     /**
      * @return wether up is pressed
      */
-    public boolean getUp()
-    {
+    public boolean getUp() {
         return up;
     }
+
     /**
      * @return wether down is pressed
      */
-    public boolean getDown()
-    {
+    public boolean getDown() {
         return down;
     }
 
     /**
      * @return the player
      */
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return player;
     }
 
     /**
      * @return the lives
      */
-    public Lives getLives()
-    {
+    public Lives getLives() {
         return lives;
     }
 
     /**
      * @return the sword
      */
-    public Sword getSword()
-    {
-        if(hasSword)
-        {
-             return sword;
+    public Sword getSword() {
+        if (hasSword) {
+            return sword;
         }
         return null;
     }
-    
 
     /**
      * @return an array list of doors
      */
-    public ArrayList<Door> getDoors()
-    {
+    public ArrayList<Door> getDoors() {
         return doors;
     }
 
     /**
      * @return the door entered from
      */
-    public Door getDoorEnteredFrom()
-    {
+    public Door getDoorEnteredFrom() {
         return doorEnteredFrom;
     }
 
     /**
      * @return wether the level has a sword
      */
-    public boolean hasSword()
-    {
+    public boolean hasSword() {
         return hasSword;
     }
 
     /**
      * @return if the player is on the level
      */
-    public boolean onLevel()
-    {
+    public boolean onLevel() {
         return onLevel;
     }
 
@@ -235,53 +214,33 @@ public class Level {
     /**
      * Sets starting location of player based on which door they entered from
      */
-    public void setStartingPosition()
-    {
-        if(this.getDoorEnteredFrom() instanceof LeftDoor)
-        {
-            setStartingPosition(1100,330);
-            if(player.getHasSword())
-            {
+    public void setStartingPosition() {
+        if (this.getDoorEnteredFrom() instanceof LeftDoor) {
+            setStartingPosition(1100, 330);
+            if (player.getHasSword()) {
                 player.setImageName("images/playerleft.png");
-            }
-            else
-            {
+            } else {
                 player.setImageName("images/playerleftnosword.png");
             }
-        }
-        else if(this.getDoorEnteredFrom() instanceof UpDoor)
-        {
-            setStartingPosition(590,610);
-            if(player.getHasSword())
-            {
+        } else if (this.getDoorEnteredFrom() instanceof UpDoor) {
+            setStartingPosition(590, 610);
+            if (player.getHasSword()) {
                 player.setImageName("images/playerup.png");
-            }
-            else
-            {
+            } else {
                 player.setImageName("images/playerupnosword.png");
             }
-        }
-        else if(this.getDoorEnteredFrom() instanceof RightDoor)
-        {
-            setStartingPosition(130,330);
-            if(player.getHasSword())
-            {
+        } else if (this.getDoorEnteredFrom() instanceof RightDoor) {
+            setStartingPosition(130, 330);
+            if (player.getHasSword()) {
+                player.setImageName("images/playerright.png");
+            } else {
                 player.setImageName("images/playerright.png");
             }
-            else
-            {
-                player.setImageName("images/playerright.png");
-            }
-        }
-        else if(this.getDoorEnteredFrom() instanceof DownDoor)
-        {
-            setStartingPosition(590,110);
-            if(player.getHasSword())
-            {
+        } else if (this.getDoorEnteredFrom() instanceof DownDoor) {
+            setStartingPosition(590, 110);
+            if (player.getHasSword()) {
                 player.setImageName("images/playerdown.png");
-            }
-            else
-            {
+            } else {
                 player.setImageName("images/playerdownnosword.png");
             }
         }
@@ -289,11 +248,11 @@ public class Level {
 
     /**
      * Sets the starting position of the player
+     * 
      * @param x
      * @param y
      */
-    public void setStartingPosition(int x, int y)
-    {
+    public void setStartingPosition(int x, int y) {
         player.setX(x);
         player.setY(y);
     }
@@ -301,8 +260,7 @@ public class Level {
     /**
      * @param b boolean to set the level to
      */
-    public void setOnLevel(boolean b)
-    {
+    public void setOnLevel(boolean b) {
         onLevel = b;
     }
 
@@ -310,60 +268,56 @@ public class Level {
      * @param i the index of the enemy
      * @param e the enemy to set
      */
-    public void setEnemy(int i, Enemy e)
-    {
+    public void setEnemy(int i, Enemy e) {
         enemies[i] = e;
     }
 
     /**
      * @param s the sword to set
      */
-    public void setSword(Sword s)
-    {
+    public void setSword(Sword s) {
         sword = s;
     }
 
     /**
      * @param b boolean to set X to
      */
-    public void setX(boolean b)
-    {
+    public void setX(boolean b) {
         x = b;
     }
+
     /**
      * @param b boolean to set left to
      */
-    public void setLeft(boolean b)
-    {
+    public void setLeft(boolean b) {
         left = b;
     }
+
     /**
      * @param b boolean to set right to
      */
-    public void setRight(boolean b)
-    {
+    public void setRight(boolean b) {
         right = b;
     }
+
     /**
      * @param b boolean to set up to
      */
-    public void setUp(boolean b)
-    {
+    public void setUp(boolean b) {
         up = b;
     }
+
     /**
      * @param b boolean to set down to
      */
-    public void setDown(boolean b)
-    {
+    public void setDown(boolean b) {
         down = b;
     }
 
     /**
      * resets all the booleans to false
      */
-    public void clear()
-    {
+    public void clear() {
         up = down = left = right = x = false;
     }
 
