@@ -1,8 +1,9 @@
 import java.awt.Rectangle;
+
 public abstract class Door {
     private Rectangle rect;
     private boolean canUse;
-    private int fCount = 50;
+    private int fCount = 10;
 
     public Door(int x, int y, int width, int height) {
         rect = new Rectangle(x, y, width, height);
@@ -22,8 +23,7 @@ public abstract class Door {
     }
 
     public boolean canUse() {
-        if(fCount <= 1)
-        {
+        if (fCount <= 1) {
             canUse = true;
             fCount = -1;
             return canUse;
@@ -33,7 +33,7 @@ public abstract class Door {
 
     public void use() {
         canUse = false;
-        fCount = 50;
+        fCount = 10;
     }
 
     public int getFCount() {

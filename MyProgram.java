@@ -111,8 +111,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         levels.add(new Level2());
 
         levels.get(0).setOnLevel(true);
-        //levels.add(new Level3());
-        //levels.add(new Level4());
+        // levels.add(new Level3());
+        // levels.add(new Level4());
         if (timer != null) {
             timer.stop();
         }
@@ -136,7 +136,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     public int getCurrentLevel() {
         for (int i = 0; i < levels.size(); i++) {
             if (levels.get(i).onLevel()) {
-                //System.out.println(i);
+                // System.out.println(i);
                 return i;
             }
         }
@@ -190,27 +190,28 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             levels.get(getCurrentLevel()).getPlayer().right();
         }
 
-        if (levels.get(getCurrentLevel()).getPlayer().getX() < 0) {
-            levels.get(getCurrentLevel()).getPlayer().setX(0);
+        if (levels.get(getCurrentLevel()).getPlayer().getX() < 110) {
+            levels.get(getCurrentLevel()).getPlayer().setX(110);
         } else if (levels.get(getCurrentLevel()).getPlayer().getX()
-                + levels.get(getCurrentLevel()).getPlayer().getWidth() > gameWidth) {
+                + levels.get(getCurrentLevel()).getPlayer().getWidth() > 1168) {
             levels.get(getCurrentLevel()).getPlayer()
-                    .setX(gameWidth - levels.get(getCurrentLevel()).getPlayer().getWidth());
+                    .setX(1168 - levels.get(getCurrentLevel()).getPlayer().getWidth());
         }
 
-        if (levels.get(getCurrentLevel()).getPlayer().getY() < 0) {
-            levels.get(getCurrentLevel()).getPlayer().setY(0);
+        if (levels.get(getCurrentLevel()).getPlayer().getY() < 110) {
+            levels.get(getCurrentLevel()).getPlayer().setY(110);
         } else if (levels.get(getCurrentLevel()).getPlayer().getY()
-                + levels.get(getCurrentLevel()).getPlayer().getHeight() > gameHeight) {
+                + levels.get(getCurrentLevel()).getPlayer().getHeight() > 600) {
             levels.get(getCurrentLevel()).getPlayer()
-                    .setY(gameHeight - levels.get(getCurrentLevel()).getPlayer().getHeight());
+                    .setY(600 - levels.get(getCurrentLevel()).getPlayer().getHeight());
         }
+
+        levels.get(getCurrentLevel()).levelSpecificCollision();
 
         // if(levels.get(getCurrentLevel()).getPlayer().getRect().intersects(goal)) {
         // onWin();
         // }
-        if(levels.get(getCurrentLevel()).hasSword())
-        {
+        if (levels.get(getCurrentLevel()).hasSword()) {
             if (levels.get(getCurrentLevel()).getPlayer().getRect()
                     .intersects(levels.get(getCurrentLevel()).getSword().getRect())) {
                 levels.get(getCurrentLevel()).getPlayer().getSword();
@@ -299,10 +300,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
         // doorsTest
         g.setColor(Color.BLUE);
-        g.drawRect(60, 334, 50, 50);
-        g.drawRect(590, 60, 50, 50);
-        g.drawRect(1170, 334, 50, 50);
-        g.drawRect(590, 610, 50, 50);
+        g.drawRect(60, 334, 60, 50);
+        g.drawRect(615, 60, 50, 60);
+        g.drawRect(1160, 334, 60, 50);
+        g.drawRect(615, 600, 50, 60);
 
         // draws lives background
         g.setColor(Color.WHITE);
@@ -312,29 +313,27 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
         // playerTest
         g.setColor(Color.RED);
-        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX(), levels.get(getCurrentLevel()).getPlayer().getY(),
-                levels.get(getCurrentLevel()).getPlayer().getWidth(),
-                levels.get(getCurrentLevel()).getPlayer().getHeight());
-        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 5,
-                levels.get(getCurrentLevel()).getPlayer().getY() - 60, 60, 75);
-        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 5,
-                levels.get(getCurrentLevel()).getPlayer().getY() + 60, 60, 75);
-        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 70,
-                levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
-        g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 45,
-                levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
+        //g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX(), levels.get(getCurrentLevel()).getPlayer().getY(),
+        //        levels.get(getCurrentLevel()).getPlayer().getWidth(),
+        //        levels.get(getCurrentLevel()).getPlayer().getHeight());
+        // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 5,
+        // levels.get(getCurrentLevel()).getPlayer().getY() - 60, 60, 75);
+        // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 5,
+        // levels.get(getCurrentLevel()).getPlayer().getY() + 60, 60, 75);
+        // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() - 70,
+        // levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
+        // g.drawRect(levels.get(getCurrentLevel()).getPlayer().getX() + 45,
+        // levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
 
         // swordTest
-        if(levels.get(getCurrentLevel()).hasSword())
-        {
+        if (levels.get(getCurrentLevel()).hasSword()) {
             g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
                     levels.get(getCurrentLevel()).getSword().getWidth(),
                     levels.get(getCurrentLevel()).getSword().getHeight());
         }
 
         // draws sword
-        if(levels.get(getCurrentLevel()).hasSword())
-        {
+        if (levels.get(getCurrentLevel()).hasSword()) {
             g.drawImage(levels.get(getCurrentLevel()).getSword().getImage(),
                     levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
                     levels.get(getCurrentLevel()).getSword().getWidth(),

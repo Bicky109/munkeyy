@@ -262,6 +262,10 @@ public class Player {
         }
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+
     public Image getImage() {
         return ImageLoader.loadCompatibleImage(imageName);
     }

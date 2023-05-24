@@ -50,19 +50,19 @@ public class Level {
         hasSword = doesHaveSword;
         if(doorLeft)
         {
-            doors.add(new LeftDoor(60, 334, 50, 50));
+            doors.add(new LeftDoor(60, 334, 60, 50));
         }
         if(doorUp)
         {
-            doors.add(new UpDoor(590, 60, 50, 50));
+            doors.add(new UpDoor(615, 60, 50, 60));
         }
         if(doorRight)
         {
-            doors.add(new RightDoor(1170, 334, 50, 50));
+            doors.add(new RightDoor(1160, 334, 60, 50));
         }
         if(doorDown)
         {
-            doors.add(new DownDoor(590, 610, 50, 50));
+            doors.add(new DownDoor(615, 600, 50, 60));
         }
         imageName = theImageName;
     }
@@ -78,6 +78,11 @@ public class Level {
         player = p;
         lives = l;
         doorEnteredFrom = d;
+    }
+
+    public void levelSpecificCollision()
+    {
+
     }
 
     /**
@@ -234,31 +239,7 @@ public class Level {
     {
         if(this.getDoorEnteredFrom() instanceof LeftDoor)
         {
-            setStartingPosition(110,334);
-            if(player.getHasSword())
-            {
-                player.setImageName("images/playerright.png");
-            }
-            else
-            {
-                player.setImageName("images/playerright.png");
-            }
-        }
-        else if(this.getDoorEnteredFrom() instanceof UpDoor)
-        {
-            setStartingPosition(590,110);
-            if(player.getHasSword())
-            {
-                player.setImageName("images/playerdown.png");
-            }
-            else
-            {
-                player.setImageName("images/playerdownnosword.png");
-            }
-        }
-        else if(this.getDoorEnteredFrom() instanceof RightDoor)
-        {
-            setStartingPosition(1170,334);
+            setStartingPosition(1100,330);
             if(player.getHasSword())
             {
                 player.setImageName("images/playerleft.png");
@@ -268,7 +249,7 @@ public class Level {
                 player.setImageName("images/playerleftnosword.png");
             }
         }
-        else if(this.getDoorEnteredFrom() instanceof DownDoor)
+        else if(this.getDoorEnteredFrom() instanceof UpDoor)
         {
             setStartingPosition(590,610);
             if(player.getHasSword())
@@ -278,6 +259,30 @@ public class Level {
             else
             {
                 player.setImageName("images/playerupnosword.png");
+            }
+        }
+        else if(this.getDoorEnteredFrom() instanceof RightDoor)
+        {
+            setStartingPosition(130,330);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerright.png");
+            }
+            else
+            {
+                player.setImageName("images/playerright.png");
+            }
+        }
+        else if(this.getDoorEnteredFrom() instanceof DownDoor)
+        {
+            setStartingPosition(590,110);
+            if(player.getHasSword())
+            {
+                player.setImageName("images/playerdown.png");
+            }
+            else
+            {
+                player.setImageName("images/playerdownnosword.png");
             }
         }
     }
