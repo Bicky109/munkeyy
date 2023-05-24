@@ -223,7 +223,7 @@ public class Level {
                 player.setImageName("images/playerleftnosword.png");
             }
         } else if (this.getDoorEnteredFrom() instanceof UpDoor) {
-            setStartingPosition(590, 610);
+            setStartingPosition(615, 530);
             if (player.getHasSword()) {
                 player.setImageName("images/playerup.png");
             } else {
@@ -237,7 +237,7 @@ public class Level {
                 player.setImageName("images/playerright.png");
             }
         } else if (this.getDoorEnteredFrom() instanceof DownDoor) {
-            setStartingPosition(590, 110);
+            setStartingPosition(615, 130);
             if (player.getHasSword()) {
                 player.setImageName("images/playerdown.png");
             } else {

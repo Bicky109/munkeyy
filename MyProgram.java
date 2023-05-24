@@ -109,10 +109,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     public void setUpGame() {
         levels.add(new Level1());
         levels.add(new Level2());
+        levels.add(new Level3());
+        levels.add(new Level4());
 
         levels.get(0).setOnLevel(true);
-        // levels.add(new Level3());
-        // levels.add(new Level4());
         if (timer != null) {
             timer.stop();
         }
@@ -201,9 +201,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         if (levels.get(getCurrentLevel()).getPlayer().getY() < 110) {
             levels.get(getCurrentLevel()).getPlayer().setY(110);
         } else if (levels.get(getCurrentLevel()).getPlayer().getY()
-                + levels.get(getCurrentLevel()).getPlayer().getHeight() > 600) {
+                + levels.get(getCurrentLevel()).getPlayer().getHeight() > 605) {
             levels.get(getCurrentLevel()).getPlayer()
-                    .setY(600 - levels.get(getCurrentLevel()).getPlayer().getHeight());
+                    .setY(605 - levels.get(getCurrentLevel()).getPlayer().getHeight());
         }
 
         levels.get(getCurrentLevel()).levelSpecificCollision();
