@@ -285,8 +285,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             count++;
             if (e == null)
                 continue;
-            if(e instanceof StalkerEnemy)
-            {
+            if (e instanceof StalkerEnemy) {
                 e.updateRect(levels.get(getCurrentLevel()).getPlayer().getRect());
             }
             e.move();
