@@ -107,12 +107,17 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     // Sets the initial state of the game
     // Could be modified to allow for multiple levels
     public void setUpGame() {
+        for(int i = 0; i < levels.size() i++)
+        {
+            levels.get(i).reset();
+        }
         levels.add(new Level1());
         levels.add(new Level2());
         levels.add(new Level3());
         levels.add(new Level4());
 
         levels.get(0).setOnLevel(true);
+
         if (timer != null) {
             timer.stop();
         }
@@ -120,7 +125,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         timer = new Timer(1000 / 30, this); // roughly 30 frames per second
         timer.start();
         levels.get(getCurrentLevel()).clear();
-        // update();
 
     }
 
@@ -166,6 +170,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
 
         levelUpdate();
+
+        if(checkWin())
+        {
+            onWin();
+        }
 
     }
 
@@ -358,15 +367,28 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    private boolean checkWin()
+    {
+        for(int i = 0; i < levels.size(); i++)
+        {
+            if(!level.get(i).isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void onWin() {
         levels.get(getCurrentLevel()).clear();
-        createDialog("You Won!", 2000);
-        setUpGame();
+        createDialog("You have rid the world of all enemies! Go to the Banana Temple to get your prize.", 2000);
+        levels.get(0).addCrown();
+        //setUpGame();
     }
 
     private void onLose() {
         levels.get(getCurrentLevel()).clear();
-        createDialog("You Lost", 1250);
+        createDialog("You have Died. Restart", 1250);
         setUpGame();
     }
 

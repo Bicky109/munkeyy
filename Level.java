@@ -79,6 +79,43 @@ public class Level {
         doorEnteredFrom = d;
     }
 
+    public boolean isEmpty()
+    {
+        for(int i = 0; i < enemies.length; i++)
+        {
+            if(enemies[i] != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void reset()
+    {
+        player = null;
+        lives = null;
+        enemies = null;
+        imageName = null;
+        onLevel = false;
+        levelNum = 0;
+        nextLevelNumLeft = 0;
+        nextLevelNumUp = 0;
+        nextLevelNumRight = 0;
+        nextLevelNumDown = 0;
+        doorEnteredFrom = null;
+        hasSword = false;
+        doors = null;
+        up = down = left = right = x = false;
+
+    }
+
+    public void addCrown()
+    {
+        
+    }
+
+
     public void levelSpecificCollision() {
 
     }

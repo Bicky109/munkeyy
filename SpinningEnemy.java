@@ -77,15 +77,15 @@ public class SpinningEnemy extends Enemy
     }
     
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("tiger.png");
+        return ImageLoader.loadCompatibleImage("spider.png");
     }
     
     public void draw(Graphics g) {
      
-        g.drawImage(getImage(),getRectangle().x -15, getRectangle().y -15, 60, 60,null);
-    
-        //g.setColor(Color.RED);
-        //g.fillRect(getRectangle().x, getRectangle().y, 20, 20);
+        g.setColor(Color.RED);
+        g.drawRect(getRectangle().x, getRectangle().y, getWidth(), getHeight());
+
+        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getWidth(), getHeigth(),null);
         
         //g.setColor(Color.BLACK);
         //g.fillOval(centerX-5, centerY-5, 10, 10);

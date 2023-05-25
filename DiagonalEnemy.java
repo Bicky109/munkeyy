@@ -6,6 +6,7 @@ public class DiagonalEnemy extends VerticalEnemy
 
     private int xspeed;
     private int screenWidth;
+    private String imageName;
     
     public DiagonalEnemy(int x, int y, int w, int h, int sH, int yS, int sW, int xS) {
     super(x,y,w,h,sH,yS);
@@ -27,26 +28,28 @@ public class DiagonalEnemy extends VerticalEnemy
         {
             xspeed = -xspeed;
             rect.x = screenWidth - (rect.width);
+            imageName = "images/cropleft.png";
         }
         rect.x += xspeed;
         if(rect.x - rect.width < 0)
         {
             xspeed = -xspeed;
             rect.x = 0 + (rect.width);
+            imageName = "images/crocright.png";
         }
         rect.x += xspeed;
         
     }
     
     public void draw(Graphics g) {
-        //g.setColor(Color.RED);
-        //g.fillRect(getRectangle().x, getRectangle().y, 30, 30);
+        g.setColor(Color.RED);
+        g.drawRect(getRectangle().x, getRectangle().y, getWidth(), getHeight());
         
-        g.drawImage(getImage(),getRectangle().x, getRectangle().y, 30, 30,null);
+        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getWidth(), getHeight(),null);
     
     }
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("Bird2.png");
+        return ImageLoader.loadCompatibleImage(imageName);
     }
 
 }
