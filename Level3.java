@@ -8,4 +8,15 @@ public class Level3 extends Level {
 
     }
 
+    public void levelSpecificCollision()
+    {
+        if (getPlayer().getY() < 170) {
+            getPlayer().setY(170);
+        } else if (getPlayer().getY()
+                + getPlayer().getHeight() > 550) {
+            getPlayer()
+                    .setY(550 - getPlayer().getHeight());
+        }
+    }
+
 }
