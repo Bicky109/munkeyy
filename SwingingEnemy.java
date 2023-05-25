@@ -5,9 +5,9 @@ public class SwingingEnemy extends SpinningEnemy
 {
     private int count;
     
-    public SwingingEnemy(int cX, int cY, int w, int h, int r, int L)
+    public SwingingEnemy(int cX, int cY, int w, int h, int r, int s, int L)
     {
-        super(cX,cY,w,h,r, L);
+        super(cX,cY,w,h,r,s, L);
         count = 0;
     }
     

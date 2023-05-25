@@ -110,10 +110,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     // Sets the initial state of the game
     // Could be modified to allow for multiple levels
     public void setUpGame() {
-        // for(int i = 0; i < levels.size(); i++)
-        // {
-        //     levels.get(i).reset();
-        // }
+        for(int i = levels.size() - 1; i >= 0; i--)
+        {
+             levels.remove(i);
+        }
         levels.add(new Level1());
         levels.add(new Level2());
         levels.add(new Level3());
@@ -399,14 +399,15 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     private void onWin() {
         count++;
         levels.get(getCurrentLevel()).clear();
-        createDialog("You have rid the world of all enemies! Go to the Banana Temple to get your prize.", 2000);
-        //levels.get(0).addCrown();
+        createDialog("You have rid the world of all enemies! Go to the Banana Temple to get your prize.", 5000);
+        levels.get(0).addCrown();
     }
 
     private void onLose() {
         countLose++;
         levels.get(getCurrentLevel()).clear();
-        createDialog("You have Died. Restart", 1250);
+        createDialog("You have Died. Restart", 2250);
+        levels.get(0).reset();
         setUpGame();
     }
 
