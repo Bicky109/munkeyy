@@ -14,6 +14,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
     private int gameWidth = 1280; // the width of the game area
     private int gameHeight = 720; // the height of the game area
+    private boolean win;
+    int count;
+    int countLose;
 
     private static JLabel dialogLabel;
     private static JFrame frame;
@@ -107,10 +110,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     // Sets the initial state of the game
     // Could be modified to allow for multiple levels
     public void setUpGame() {
-        for(int i = 0; i < levels.size(); i++)
-        {
-            levels.get(i).reset();
-        }
+        // for(int i = 0; i < levels.size(); i++)
+        // {
+        //     levels.get(i).reset();
+        // }
         levels.add(new Level1());
         levels.add(new Level2());
         levels.add(new Level3());
@@ -166,12 +169,22 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         enemyUpdate();
 
         if (levels.get(getCurrentLevel()).getLives().getLifeCount() <= 0) {
-            onLose();
+            if(countLose < 1)
+            {
+                onLose();
+            }
         }
 
         levelUpdate();
 
-        if(checkWin())
+        
+
+        if(!win)
+        {
+            checkWin();
+        }
+
+        if(win && count < 1)
         {
             onWin();
         }
@@ -308,11 +321,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         g.drawImage(levels.get(getCurrentLevel()).getImage(), 0, 0, gameWidth, gameHeight, null);
 
         // doorsTest
-        g.setColor(Color.BLUE);
-        g.drawRect(60, 334, 60, 50);
-        g.drawRect(615, 60, 50, 60);
-        g.drawRect(1160, 334, 60, 50);
-        g.drawRect(615, 600, 50, 60);
+        // g.setColor(Color.BLUE);
+        // g.drawRect(60, 334, 60, 50);
+        // g.drawRect(615, 60, 50, 60);
+        // g.drawRect(1160, 334, 60, 50);
+        // g.drawRect(615, 600, 50, 60);
 
         // draws lives background
         g.setColor(Color.WHITE);
@@ -336,11 +349,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         // levels.get(getCurrentLevel()).getPlayer().getY() + 5, 75, 60);
 
         // swordTest
-        if (levels.get(getCurrentLevel()).hasSword()) {
-            g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
-                    levels.get(getCurrentLevel()).getSword().getWidth(),
-                    levels.get(getCurrentLevel()).getSword().getHeight());
-        }
+        // if (levels.get(getCurrentLevel()).hasSword()) {
+        //     g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
+        //             levels.get(getCurrentLevel()).getSword().getWidth(),
+        //             levels.get(getCurrentLevel()).getSword().getHeight());
+        // }
 
         // draws sword
         if (levels.get(getCurrentLevel()).hasSword()) {
@@ -367,26 +380,31 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-    private boolean checkWin()
+    private void checkWin()
     {
-        for(int i = 0; i < levels.size(); i++)
-        {
-            if(!levels.get(i).isEmpty())
-            {
-                return false;
+            for(int i = 0; i < levels.size(); i++)
+            {   
+                if(levels.get(i).isEmpty())
+                {
+                    win = true;
+                }
+                else
+                {
+                    win = false;
+                    break;
+                }
             }
-        }
-        return true;
     }
 
     private void onWin() {
+        count++;
         levels.get(getCurrentLevel()).clear();
         createDialog("You have rid the world of all enemies! Go to the Banana Temple to get your prize.", 2000);
-        levels.get(0).addCrown();
-        //setUpGame();
+        //levels.get(0).addCrown();
     }
 
     private void onLose() {
+        countLose++;
         levels.get(getCurrentLevel()).clear();
         createDialog("You have Died. Restart", 1250);
         setUpGame();

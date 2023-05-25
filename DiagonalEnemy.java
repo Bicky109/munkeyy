@@ -46,7 +46,7 @@ public class DiagonalEnemy extends VerticalEnemy
         {
             xspeed = -xspeed;
             rect.x = screenWidth - (rect.width);
-            imageName = "images/cropleft.png";
+            imageName = "images/crocleft.png";
         }
         rect.x += xspeed;
         if(rect.x - rect.width < 0)
