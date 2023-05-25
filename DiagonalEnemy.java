@@ -31,14 +31,22 @@ public class DiagonalEnemy extends VerticalEnemy
         {
             speed = -speed;
             rect.y = screenHeight - (rect.width);
-            imageName = "images/crocup.png";
+            int guess = (int)(Math.random() * 5);
+           if(guess == 0)
+           {
+                imageName = "images/crocup.png";
+           }
         }
         rect.y += speed;
-        if(rect.y - rect.width < 0)
+        if(rect.y - rect.width < 80)
         {
             speed = -speed;
-            rect.y = 0 + (rect.width);
-            imageName = "images/crocdown.png";
+            rect.y = 80 + (rect.width);
+           int guess = (int)(Math.random() * 5);
+           if(guess == 0)
+           {
+                imageName = "images/crocdown.png";
+           }
         }
         rect.y += speed;
         rect.x += xspeed;

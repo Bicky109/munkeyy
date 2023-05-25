@@ -231,7 +231,7 @@ public class Player {
                 imageName = "images/playerupcrown.png";
             }
 
-            this.y(-6);
+            this.y(-7);
         }
     }
 
@@ -247,7 +247,7 @@ public class Player {
                 imageName = "images/playerdowncrown.png";
             }
 
-            this.y(6);
+            this.y(7);
         }
     }
 
@@ -262,7 +262,7 @@ public class Player {
             } else {
                 imageName = "images/playerleftcrown.png";
             }
-            this.x(-6);
+            this.x(-7);
         }
     }
 
@@ -273,7 +273,7 @@ public class Player {
             } else {
                 imageName = "images/playerrightcrown.png";
             }
-            this.x(6);
+            this.x(7);
         }
     }
 
@@ -284,8 +284,8 @@ public class Player {
             } else {
                 imageName = "images/playerrightcrown.png";
             }
-            this.y(-6);
-            this.x(6);
+            this.y(-7);
+            this.x(7);
         }
     }
 
@@ -301,8 +301,8 @@ public class Player {
                 imageName = "images/playerleftcrown.png";
             }
 
-            this.y(-6);
-            this.x(-6);
+            this.y(-7);
+            this.x(-7);
         }
     }
 
@@ -314,8 +314,8 @@ public class Player {
                 imageName = "images/playerrightcrown.png";
             }
 
-            this.y(6);
-            this.x(6);
+            this.y(7);
+            this.x(7);
         }
     }
 
@@ -330,8 +330,8 @@ public class Player {
             } else {
                 imageName = "images/playerleftcrown.png";
             }
-            this.y(6);
-            this.x(-6);
+            this.y(7);
+            this.x(-7);
         }
     }
 

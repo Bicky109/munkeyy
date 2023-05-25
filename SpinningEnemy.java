@@ -84,10 +84,10 @@ public class SpinningEnemy extends Enemy
     
     public void draw(Graphics g) {
      
-        g.setColor(Color.RED);
-        g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
+       // g.setColor(Color.RED);
+       // g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
 
-        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height,null);
+        g.drawImage(getImage(),getRectangle().x - (getRectangle().width / 8), getRectangle().y - (getRectangle().height / 8), getRectangle().width + (getRectangle().width / 4), getRectangle().height + (getRectangle().height / 4),null);
         
         //g.setColor(Color.BLACK);
         //g.fillOval(centerX-5, centerY-5, 10, 10);
