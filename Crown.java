@@ -69,7 +69,7 @@ public class Crown
         return crown;
     }
     
-    public void getcrown()
+    public void getCrown()
     {
         imageName = "images/blank.png";
     }

@@ -19,6 +19,7 @@ public class Player {
     private int fCount = -1;
     private int SFCount = -1;
     private boolean canX = true;
+    private boolean hasCrown;
 
     private String imageName;
 
@@ -176,10 +177,17 @@ public class Player {
 
     public void up() {
         if (!isAttacking) {
-            if (hasSword) {
-                imageName = "images/playerup.png";
-            } else {
-                imageName = "images/playerupnosword.png";
+            if(!hasCrown)
+            {
+                if (hasSword) {
+                    imageName = "images/playerup.png";
+                } else {
+                    imageName = "images/playerupnosword.png";
+                }
+            }
+            else
+            {
+                imageName = "images/playerupcrown.png";
             }
 
             this.y(-6);
@@ -188,10 +196,17 @@ public class Player {
 
     public void down() {
         if (!isAttacking) {
-            if (hasSword) {
-                imageName = "images/playerdown.png";
-            } else {
-                imageName = "images/playerdownnosword.png";
+            if(!hasCrown)
+            {
+                if (hasSword) {
+                    imageName = "images/playerdown.png";
+                } else {
+                    imageName = "images/playerdownnosword.png";
+                }
+            }
+            else
+            {
+                imageName = "images/playerdowncrown.png";
             }
 
             this.y(6);
@@ -200,28 +215,46 @@ public class Player {
 
     public void left() {
         if (!isAttacking) {
-            if (hasSword) {
-                imageName = "images/playerleft.png";
-            } else {
-                imageName = "images/playerleftnosword.png";
+            if(!hasCrown)
+            {
+                if (hasSword) {
+                    imageName = "images/playerleft.png";
+                } else {
+                    imageName = "images/playerleftnosword.png";
+                }
             }
-
+            else
+            {
+                imageName = "images/playerleftcrown.png";
+            }
             this.x(-6);
         }
     }
 
     public void right() {
         if (!isAttacking) {
-            imageName = "images/playerright.png";
-
+            if(!hasCrown)
+            {
+                imageName = "images/playerright.png";
+            }
+            else
+            {
+                imageName = "images/playerrightcrown.png";
+            }
             this.x(6);
         }
     }
 
     public void diagUpRight() {
         if (!isAttacking) {
-            imageName = "images/playerright.png";
-
+            if(!hasCrown)
+            {
+                imageName = "images/playerright.png";
+            }
+            else
+            {
+                imageName = "images/playerrightcrown.png";
+            }
             this.y(-6);
             this.x(6);
         }
@@ -229,10 +262,17 @@ public class Player {
 
     public void diagUpLeft() {
         if (!isAttacking) {
-            if (hasSword) {
-                imageName = "images/playerleft.png";
-            } else {
-                imageName = "images/playerleftnosword.png";
+            if(!hasCrown)
+            {
+                if (hasSword) {
+                    imageName = "images/playerleft.png";
+                } else {
+                    imageName = "images/playerleftnosword.png";
+                }
+            }
+            else
+            {
+                imageName = "images/playerleftcrown.png";
             }
 
             this.y(-6);
@@ -242,7 +282,14 @@ public class Player {
 
     public void diagDownRight() {
         if (!isAttacking) {
-            imageName = "images/playerright.png";
+            if(!hasCrown)
+            {
+                imageName = "images/playerright.png";
+            }
+            else
+            {
+                imageName = "images/playerrightcrown.png";
+            }
 
             this.y(6);
             this.x(6);
@@ -251,15 +298,26 @@ public class Player {
 
     public void diagDownLeft() {
         if (!isAttacking) {
-            if (hasSword) {
-                imageName = "images/playerleft.png";
-            } else {
-                imageName = "images/playerleftnosword.png";
+            if(!hasCrown)
+            {
+                if (hasSword) {
+                    imageName = "images/playerleft.png";
+                } else {
+                    imageName = "images/playerleftnosword.png";
+                }
             }
-
+            else
+            {
+                imageName = "images/playerleftcrown.png";
+            }
             this.y(6);
             this.x(-6);
         }
+    }
+
+    public void getCrown()
+    {
+        hasCrown = true;
     }
 
     public String getImageName() {

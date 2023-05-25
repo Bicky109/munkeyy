@@ -241,6 +241,14 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
             }
         }
 
+        if (levels.get(getCurrentLevel()).hasCrown()) {
+            if (levels.get(getCurrentLevel()).getPlayer().getRect()
+                    .intersects(levels.get(getCurrentLevel()).getCrown().getRect())) {
+                levels.get(getCurrentLevel()).getPlayer().getCrown();
+                levels.get(getCurrentLevel()).getCrown().getCrown();
+            }
+        }
+
         if (levels.get(getCurrentLevel()).getPlayer().getSFCount() >= 0) {
             levels.get(getCurrentLevel()).getPlayer().SFCount();
         }
@@ -354,6 +362,15 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         //             levels.get(getCurrentLevel()).getSword().getWidth(),
         //             levels.get(getCurrentLevel()).getSword().getHeight());
         // }
+
+        //draw crown
+        if (levels.get(getCurrentLevel()).hasCrown()) {
+            g.drawImage(levels.get(getCurrentLevel()).getCrown().getImage(),
+                    levels.get(getCurrentLevel()).getCrown().getX(), levels.get(getCurrentLevel()).getCrown().getY(),
+                    levels.get(getCurrentLevel()).getCrown().getWidth(),
+                    levels.get(getCurrentLevel()).getCrown().getHeight(), null);
+        }
+
 
         // draws sword
         if (levels.get(getCurrentLevel()).hasSword()) {

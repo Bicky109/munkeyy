@@ -139,6 +139,16 @@ public class Level {
         return 0;
     }
 
+    public boolean hasCrown()
+    {
+        return false;
+    }
+
+    public Crown getCrown()
+    {
+        return null;
+    }
+
     /**
      * @return array of enemies
      */

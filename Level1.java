@@ -1,6 +1,7 @@
 public class Level1 extends Level {
 
     private Crown crown;
+    private boolean hasCrown;
     public Level1() {
         super(1, 2, -1, -1, -1, 215, 315, true, false, false, false, true, "images/swordroom.png");
         setSword(new Sword(980, 422, 60, 80));
@@ -9,7 +10,18 @@ public class Level1 extends Level {
 
     public void addCrown()
     {
-        crown = new Crown(980, 422, 80, 80);
+        hasCrown = true;
+        crown = new Crown(580, 222, 80, 80);
+    }
+
+    public boolean hasCrown()
+    {
+        return hasCrown;
+    }
+
+    public Crown getCrown()
+    {
+        return crown;
     }
 
     public void levelSpecificCollision() {
