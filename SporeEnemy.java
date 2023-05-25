@@ -9,9 +9,9 @@ public class SporeEnemy extends SpinningEnemy
     private double count;
     private int radius;
 
-    public SporeEnemy(int x, int y, int w, int h, int r, double theRange)
+    public SporeEnemy(int x, int y, int w, int h, int r, double theRange, int L)
     {
-        super(x,y,w,h,r);
+        super(x,y,w,h,r, L);
         range = theRange;
         count = 0;
         radius = r;

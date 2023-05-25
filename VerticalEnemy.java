@@ -7,9 +7,9 @@ public class VerticalEnemy extends Enemy
     private int screenHeight;
     private String imageName1;
 
-    public VerticalEnemy(int x, int y, int w, int h, int sH, int yS) 
+    public VerticalEnemy(int x, int y, int w, int h, int sH, int yS, int L) 
     {
-    super(x,y,w,h);
+    super(x,y,w,h,L);
     speed = yS;
     screenHeight = sH;
     }

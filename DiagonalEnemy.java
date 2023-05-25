@@ -8,8 +8,8 @@ public class DiagonalEnemy extends VerticalEnemy
     private int screenWidth;
     private String imageName;
     
-    public DiagonalEnemy(int x, int y, int w, int h, int sH, int yS, int sW, int xS) {
-    super(x,y,w,h,sH,yS);
+    public DiagonalEnemy(int x, int y, int w, int h, int sH, int yS, int sW, int xS, int L) {
+    super(x,y,w,h,sH,yS, L);
     screenWidth = sW;
     xspeed = xS;
     }
@@ -43,9 +43,9 @@ public class DiagonalEnemy extends VerticalEnemy
     
     public void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.drawRect(getRectangle().x, getRectangle().y, getWidth(), getHeight());
+        g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
         
-        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getWidth(), getHeight(),null);
+        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height,null);
     
     }
     public Image getImage(){

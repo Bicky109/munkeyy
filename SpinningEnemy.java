@@ -8,8 +8,8 @@ public class SpinningEnemy extends Enemy
     private double radius;
     private double angle;
 
-     public SpinningEnemy(int cX, int cY, int w, int h, double r) {
-        super(cX + ((int)r) - w/2, cY - h/2, w, h);
+     public SpinningEnemy(int cX, int cY, int w, int h, double r, int L) {
+        super(cX + ((int)r) - w/2, cY - h/2, w, h, L);
         
         centerX = cX;
         centerY = cY;
@@ -83,9 +83,9 @@ public class SpinningEnemy extends Enemy
     public void draw(Graphics g) {
      
         g.setColor(Color.RED);
-        g.drawRect(getRectangle().x, getRectangle().y, getWidth(), getHeight());
+        g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
 
-        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getWidth(), getHeigth(),null);
+        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height,null);
         
         //g.setColor(Color.BLACK);
         //g.fillOval(centerX-5, centerY-5, 10, 10);

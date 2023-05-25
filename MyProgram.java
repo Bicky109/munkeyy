@@ -107,7 +107,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     // Sets the initial state of the game
     // Could be modified to allow for multiple levels
     public void setUpGame() {
-        for(int i = 0; i < levels.size() i++)
+        for(int i = 0; i < levels.size(); i++)
         {
             levels.get(i).reset();
         }
@@ -371,7 +371,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     {
         for(int i = 0; i < levels.size(); i++)
         {
-            if(!level.get(i).isEmpty())
+            if(!levels.get(i).isEmpty())
             {
                 return false;
             }
