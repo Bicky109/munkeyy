@@ -1,14 +1,23 @@
 
 import java.awt.*;
 
+import org.w3c.dom.css.Rect;
+
 public class StalkerEnemy extends Enemy
 {
     
     private Rectangle playerRect;
+    private int speed;
     
-    public StalkerEnemy(int x, int y, int w, int h, Rectangle p) 
+    public StalkerEnemy(int x, int y, int w, int h, int s, int L, Rectangle p) 
     {
-        super(x,y,w,h);
+        super(x,y,w,h, L);
+        speed = s;
+        playerRect = p;
+    }
+
+    public void updateRect(Rectangle p)
+    {
         playerRect = p;
     }
     
@@ -23,34 +32,34 @@ public class StalkerEnemy extends Enemy
         
         if(ourRect.x < playerRect.x)
         {
-            ourRect.x += 1;
+            ourRect.x += speed;
         }
         else if(ourRect.x > playerRect.x)
         {
-            ourRect.x -= 1;
+            ourRect.x -= speed;
         }
         
         if(ourRect.y < playerRect.y)
         {
-            ourRect.y += 1;
+            ourRect.y += speed;
         }
         else if (ourRect.y > playerRect.y)
         {
-            ourRect.y -= 1;
+            ourRect.y -= speed;
         }
         
         
     }
     
     public void draw(Graphics g) {
-        //g.setColor(Color.WHITE);
-        //g.fillRect(getRectangle().x, getRectangle().y, 30, 30);
+        g.setColor(Color.RED);
+        g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
         
-        g.drawImage(getImage(),getRectangle().x, getRectangle().y, 30, 30,null);
+        g.drawImage(getImage(),getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height,null);
     
     }
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("snake.png");
+        return ImageLoader.loadCompatibleImage("images/crocdown.png");
     }
     
 }

@@ -19,6 +19,10 @@ public abstract class Enemy
     public Rectangle getRectangle() {
         return rect;
     }
+
+    public void updateRect(Rectangle r){
+
+    }
     
     public boolean canGetHit()
     {
