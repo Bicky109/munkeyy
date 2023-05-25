@@ -69,8 +69,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_X) {
             if (levels.get(getCurrentLevel()).getPlayer().getCanX()) {
                 levels.get(getCurrentLevel()).setX(true);
-            } else {
-                levels.get(getCurrentLevel()).setX(true);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
             levels.get(getCurrentLevel()).setUp(true);
@@ -110,10 +108,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     // Sets the initial state of the game
     // Could be modified to allow for multiple levels
     public void setUpGame() {
-        for(int i = levels.size() - 1; i >= 0; i--)
-        {
-             levels.remove(i);
+        for (int i = levels.size() - 1; i >= 0; i--) {
+            levels.remove(i);
         }
+        count = 0;
+        countLose = 0;
         levels.add(new Level1());
         levels.add(new Level2());
         levels.add(new Level3());
@@ -169,23 +168,18 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         enemyUpdate();
 
         if (levels.get(getCurrentLevel()).getLives().getLifeCount() <= 0) {
-            if(countLose < 1)
-            {
+            if (countLose < 1) {
                 onLose();
             }
         }
 
         levelUpdate();
 
-        
-
-        if(!win)
-        {
+        if (!win) {
             checkWin();
         }
 
-        if(win && count < 1)
-        {
+        if (win && count < 1) {
             onWin();
         }
 
@@ -358,19 +352,19 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
         // swordTest
         // if (levels.get(getCurrentLevel()).hasSword()) {
-        //     g.drawRect(levels.get(getCurrentLevel()).getSword().getX(), levels.get(getCurrentLevel()).getSword().getY(),
-        //             levels.get(getCurrentLevel()).getSword().getWidth(),
-        //             levels.get(getCurrentLevel()).getSword().getHeight());
+        // g.drawRect(levels.get(getCurrentLevel()).getSword().getX(),
+        // levels.get(getCurrentLevel()).getSword().getY(),
+        // levels.get(getCurrentLevel()).getSword().getWidth(),
+        // levels.get(getCurrentLevel()).getSword().getHeight());
         // }
 
-        //draw crown
+        // draw crown
         if (levels.get(getCurrentLevel()).hasCrown()) {
             g.drawImage(levels.get(getCurrentLevel()).getCrown().getImage(),
                     levels.get(getCurrentLevel()).getCrown().getX(), levels.get(getCurrentLevel()).getCrown().getY(),
                     levels.get(getCurrentLevel()).getCrown().getWidth(),
                     levels.get(getCurrentLevel()).getCrown().getHeight(), null);
         }
-
 
         // draws sword
         if (levels.get(getCurrentLevel()).hasSword()) {
@@ -397,20 +391,15 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-    private void checkWin()
-    {
-            for(int i = 0; i < levels.size(); i++)
-            {   
-                if(levels.get(i).isEmpty())
-                {
-                    win = true;
-                }
-                else
-                {
-                    win = false;
-                    break;
-                }
+    private void checkWin() {
+        for (int i = 0; i < levels.size(); i++) {
+            if (levels.get(i).isEmpty()) {
+                win = true;
+            } else {
+                win = false;
+                break;
             }
+        }
     }
 
     private void onWin() {

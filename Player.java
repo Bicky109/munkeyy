@@ -38,8 +38,7 @@ public class Player {
     public void attack() {
         if (hasSword) {
             isAttacking = true;
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (imageName.equals("images/playerup.png")) {
                     sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
                     imageName = "images/playerswordup.png";
@@ -61,25 +60,23 @@ public class Player {
                     SFCount = 8;
                     canX = false;
                 }
-            }
-            else
-            {
-                if (imageName.equals("images/playercrownup.png")) {
+            } else {
+                if (imageName.equals("images/playerupcrown.png")) {
                     sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
                     imageName = "images/playerswordupcrown.png";
                     SFCount = 8;
                     canX = false;
-                } else if (imageName.equals("images/playercrowndown.png")) {
+                } else if (imageName.equals("images/playerdowncrown.png")) {
                     sword = new Rectangle(player.x + 5, player.y + 60, 60, 75);
                     imageName = "images/playersworddowncrown.png";
                     SFCount = 8;
                     canX = false;
-                } else if (imageName.equals("images/playercrownleft.png")) {
+                } else if (imageName.equals("images/playerleftcrown.png")) {
                     sword = new Rectangle(player.x - 70, player.y + 5, 75, 60);
                     imageName = "images/playerswordleftcrown.png";
                     SFCount = 8;
                     canX = false;
-                } else if (imageName.equals("images/playercrownright.png")) {
+                } else if (imageName.equals("images/playerrightcrown.png")) {
                     sword = new Rectangle(player.x + 45, player.y + 5, 75, 60);
                     imageName = "images/playerswordrightcrown.png";
                     SFCount = 8;
@@ -96,14 +93,26 @@ public class Player {
             SFCount = -1;
             isAttacking = false;
             canX = true;
-            if (imageName.equals("images/playerswordup.png") || imageName.equals("images/playerswordupcrown.png")) {
-                imageName = "images/playerup.png";
-            } else if (imageName.equals("images/playersworddown.png") || imageName.equals("images/playersworddowncrown.png")) {
-                imageName = "images/playerdown.png";
-            } else if (imageName.equals("images/playerswordleft.png") || imageName.equals("images/playerswordleftcrown.png")) {
-                imageName = "images/playerleft.png";
-            } else if (imageName.equals("images/playerswordright.png") || imageName.equals("images/playerswordrightcrown.png")) {
-                imageName = "images/playerright.png";
+            if (!hasCrown) {
+                if (imageName.equals("images/playerswordup.png")) {
+                    imageName = "images/playerup.png";
+                } else if (imageName.equals("images/playersworddown.png")) {
+                    imageName = "images/playerdown.png";
+                } else if (imageName.equals("images/playerswordleft.png")) {
+                    imageName = "images/playerleft.png";
+                } else if (imageName.equals("images/playerswordright.png")) {
+                    imageName = "images/playerright.png";
+                }
+            } else {
+                if (imageName.equals("images/playerswordupcrown.png")) {
+                    imageName = "images/playerupcrown.png";
+                } else if (imageName.equals("images/playersworddowncrown.png")) {
+                    imageName = "images/playerdowncrown.png";
+                } else if (imageName.equals("images/playerswordleftcrown.png")) {
+                    imageName = "images/playerleftcrown.png";
+                } else if (imageName.equals("images/playerswordrightcrown.png")) {
+                    imageName = "images/playerrightcrown.png";
+                }
             }
         }
     }
@@ -130,13 +139,21 @@ public class Player {
     }
 
     public void bounce() {
-        if (imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png") || imageName.equals("images/playerupcrown.png") || imageName.equals("images/playerswordup.png")) {
+        if (imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png")
+                || imageName.equals("images/playerupcrown.png") || imageName.equals("images/playerswordup.png")
+                || imageName.equals("images/playerswordupcrown.png")) {
             player.y += 42;
-        } else if (imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png") || imageName.equals("images/playerdowncrown.png") || imageName.equals("images/playersworddown.png")) {
+        } else if (imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png")
+                || imageName.equals("images/playerdowncrown.png") || imageName.equals("images/playersworddown.png")
+                || imageName.equals("images/playersworddowncrown.png")) {
             player.y -= 42;
-        } else if (imageName.equals("images/playerleft.png") || imageName.equals("images/playerleftnosword.png") || imageName.equals("images/playerleftcrown.png") || imageName.equals("images/playerswordleft.png")) {
+        } else if (imageName.equals("images/playerleft.png") || imageName.equals("images/playerleftnosword.png")
+                || imageName.equals("images/playerleftcrown.png") || imageName.equals("images/playerswordleft.png")
+                || imageName.equals("images/playerswordleftcrown.png")) {
             player.x += 42;
-        } else if (imageName.equals("images/playerright.png") || imageName.equals("images/playerrightnosword.png") || imageName.equals("images/playerrightcrown.png") || imageName.equals("images/playerswordright.png")) {
+        } else if (imageName.equals("images/playerright.png") || imageName.equals("images/playerrightnosword.png")
+                || imageName.equals("images/playerrightcrown.png") || imageName.equals("images/playerswordright.png")
+                || imageName.equals("images/playerswordrightcrown.png")) {
             player.x -= 42;
         }
     }
@@ -204,16 +221,13 @@ public class Player {
 
     public void up() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (hasSword) {
                     imageName = "images/playerup.png";
                 } else {
                     imageName = "images/playerupnosword.png";
                 }
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerupcrown.png";
             }
 
@@ -223,16 +237,13 @@ public class Player {
 
     public void down() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (hasSword) {
                     imageName = "images/playerdown.png";
                 } else {
                     imageName = "images/playerdownnosword.png";
                 }
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerdowncrown.png";
             }
 
@@ -242,16 +253,13 @@ public class Player {
 
     public void left() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (hasSword) {
                     imageName = "images/playerleft.png";
                 } else {
                     imageName = "images/playerleftnosword.png";
                 }
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerleftcrown.png";
             }
             this.x(-6);
@@ -260,12 +268,9 @@ public class Player {
 
     public void right() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 imageName = "images/playerright.png";
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerrightcrown.png";
             }
             this.x(6);
@@ -274,12 +279,9 @@ public class Player {
 
     public void diagUpRight() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 imageName = "images/playerright.png";
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerrightcrown.png";
             }
             this.y(-6);
@@ -289,16 +291,13 @@ public class Player {
 
     public void diagUpLeft() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (hasSword) {
                     imageName = "images/playerleft.png";
                 } else {
                     imageName = "images/playerleftnosword.png";
                 }
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerleftcrown.png";
             }
 
@@ -309,12 +308,9 @@ public class Player {
 
     public void diagDownRight() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 imageName = "images/playerright.png";
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerrightcrown.png";
             }
 
@@ -325,16 +321,13 @@ public class Player {
 
     public void diagDownLeft() {
         if (!isAttacking) {
-            if(!hasCrown)
-            {
+            if (!hasCrown) {
                 if (hasSword) {
                     imageName = "images/playerleft.png";
                 } else {
                     imageName = "images/playerleftnosword.png";
                 }
-            }
-            else
-            {
+            } else {
                 imageName = "images/playerleftcrown.png";
             }
             this.y(6);
@@ -342,8 +335,7 @@ public class Player {
         }
     }
 
-    public void getCrown()
-    {
+    public void getCrown() {
         hasCrown = true;
     }
 

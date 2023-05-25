@@ -79,20 +79,16 @@ public class Level {
         doorEnteredFrom = d;
     }
 
-    public boolean isEmpty()
-    {
-        for(int i = 0; i < enemies.length; i++)
-        {
-            if(enemies[i] != null)
-            {
+    public boolean isEmpty() {
+        for (int i = 0; i < enemies.length; i++) {
+            if (enemies[i] != null) {
                 return false;
             }
         }
         return true;
     }
 
-    public void reset()
-    {
+    public void reset() {
         player = null;
         lives = null;
         enemies = null;
@@ -110,11 +106,9 @@ public class Level {
 
     }
 
-    public void addCrown()
-    {
-        
-    }
+    public void addCrown() {
 
+    }
 
     public void levelSpecificCollision() {
 
@@ -139,13 +133,11 @@ public class Level {
         return 0;
     }
 
-    public boolean hasCrown()
-    {
+    public boolean hasCrown() {
         return false;
     }
 
-    public Crown getCrown()
-    {
+    public Crown getCrown() {
         return null;
     }
 
