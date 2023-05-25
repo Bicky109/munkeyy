@@ -38,26 +38,53 @@ public class Player {
     public void attack() {
         if (hasSword) {
             isAttacking = true;
-            if (imageName.equals("images/playerup.png")) {
-                sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
-                imageName = "images/playerswordup.png";
-                SFCount = 8;
-                canX = false;
-            } else if (imageName.equals("images/playerdown.png")) {
-                sword = new Rectangle(player.x + 5, player.y + 60, 60, 75);
-                imageName = "images/playersworddown.png";
-                SFCount = 8;
-                canX = false;
-            } else if (imageName.equals("images/playerleft.png")) {
-                sword = new Rectangle(player.x - 70, player.y + 5, 75, 60);
-                imageName = "images/playerswordleft.png";
-                SFCount = 8;
-                canX = false;
-            } else if (imageName.equals("images/playerright.png")) {
-                sword = new Rectangle(player.x + 45, player.y + 5, 75, 60);
-                imageName = "images/playerswordright.png";
-                SFCount = 8;
-                canX = false;
+            if(!hasCrown)
+            {
+                if (imageName.equals("images/playerup.png")) {
+                    sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
+                    imageName = "images/playerswordup.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playerdown.png")) {
+                    sword = new Rectangle(player.x + 5, player.y + 60, 60, 75);
+                    imageName = "images/playersworddown.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playerleft.png")) {
+                    sword = new Rectangle(player.x - 70, player.y + 5, 75, 60);
+                    imageName = "images/playerswordleft.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playerright.png")) {
+                    sword = new Rectangle(player.x + 45, player.y + 5, 75, 60);
+                    imageName = "images/playerswordright.png";
+                    SFCount = 8;
+                    canX = false;
+                }
+            }
+            else
+            {
+                if (imageName.equals("images/playercrownup.png")) {
+                    sword = new Rectangle(player.x - 5, player.y - 60, 60, 75);
+                    imageName = "images/playerswordupcrown.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playercrowndown.png")) {
+                    sword = new Rectangle(player.x + 5, player.y + 60, 60, 75);
+                    imageName = "images/playersworddowncrown.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playercrownleft.png")) {
+                    sword = new Rectangle(player.x - 70, player.y + 5, 75, 60);
+                    imageName = "images/playerswordleftcrown.png";
+                    SFCount = 8;
+                    canX = false;
+                } else if (imageName.equals("images/playercrownright.png")) {
+                    sword = new Rectangle(player.x + 45, player.y + 5, 75, 60);
+                    imageName = "images/playerswordrightcrown.png";
+                    SFCount = 8;
+                    canX = false;
+                }
             }
         }
     }
@@ -69,13 +96,13 @@ public class Player {
             SFCount = -1;
             isAttacking = false;
             canX = true;
-            if (imageName.equals("images/playerswordup.png")) {
+            if (imageName.equals("images/playerswordup.png") || imageName.equals("images/playerswordupcrown.png")) {
                 imageName = "images/playerup.png";
-            } else if (imageName.equals("images/playersworddown.png")) {
+            } else if (imageName.equals("images/playersworddown.png") || imageName.equals("images/playersworddowncrown.png")) {
                 imageName = "images/playerdown.png";
-            } else if (imageName.equals("images/playerswordleft.png")) {
+            } else if (imageName.equals("images/playerswordleft.png") || imageName.equals("images/playerswordleftcrown.png")) {
                 imageName = "images/playerleft.png";
-            } else if (imageName.equals("images/playerswordright.png")) {
+            } else if (imageName.equals("images/playerswordright.png") || imageName.equals("images/playerswordrightcrown.png")) {
                 imageName = "images/playerright.png";
             }
         }
@@ -103,13 +130,13 @@ public class Player {
     }
 
     public void bounce() {
-        if (imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png")) {
+        if (imageName.equals("images/playerup.png") || imageName.equals("images/playerupnosword.png") || imageName.equals("images/playerupcrown.png") || imageName.equals("images/playerswordup.png")) {
             player.y += 42;
-        } else if (imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png")) {
+        } else if (imageName.equals("images/playerdown.png") || imageName.equals("images/playerdownnosword.png") || imageName.equals("images/playerdowncrown.png") || imageName.equals("images/playersworddown.png")) {
             player.y -= 42;
-        } else if (imageName.equals("images/playerleft.png") || imageName.equals("images/playerleftnosword.png")) {
+        } else if (imageName.equals("images/playerleft.png") || imageName.equals("images/playerleftnosword.png") || imageName.equals("images/playerleftcrown.png") || imageName.equals("images/playerswordleft.png")) {
             player.x += 42;
-        } else if (imageName.equals("images/playerright.png") || imageName.equals("images/playerrightnosword.png")) {
+        } else if (imageName.equals("images/playerright.png") || imageName.equals("images/playerrightnosword.png") || imageName.equals("images/playerrightcrown.png") || imageName.equals("images/playerswordright.png")) {
             player.x -= 42;
         }
     }
