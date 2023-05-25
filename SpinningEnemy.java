@@ -7,10 +7,12 @@ public class SpinningEnemy extends Enemy
     private int centerX, centerY;
     private double radius;
     private double angle;
+    private int speed;
 
-     public SpinningEnemy(int cX, int cY, int w, int h, double r, int L) {
+     public SpinningEnemy(int cX, int cY, int w, int h, double r, int s, int L) {
         super(cX + ((int)r) - w/2, cY - h/2, w, h, L);
         
+        this.speed= s;
         centerX = cX;
         centerY = cY;
         radius = r;
@@ -27,7 +29,7 @@ public class SpinningEnemy extends Enemy
 
     public void move() {
     
-        angle += 3;
+        angle += speed;
         
         Rectangle rect = getRectangle();
         
@@ -77,7 +79,7 @@ public class SpinningEnemy extends Enemy
     }
     
     public Image getImage(){
-        return ImageLoader.loadCompatibleImage("spider.png");
+        return ImageLoader.loadCompatibleImage("images/spider.png");
     }
     
     public void draw(Graphics g) {

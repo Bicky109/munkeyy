@@ -5,7 +5,7 @@ public class VerticalEnemy extends Enemy
 {
     private int speed;
     private int screenHeight;
-    private String imageName1;
+    private String imageName1 = "images/crocdown.png";
 
     public VerticalEnemy(int x, int y, int w, int h, int sH, int yS, int L) 
     {

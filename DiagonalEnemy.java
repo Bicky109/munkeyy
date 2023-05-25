@@ -5,13 +5,17 @@ public class DiagonalEnemy extends VerticalEnemy
 {
 
     private int xspeed;
+    private int speed;
+    private int screenHeight;
     private int screenWidth;
-    private String imageName;
+    private String imageName =  "images/crocdown.png";
     
     public DiagonalEnemy(int x, int y, int w, int h, int sH, int yS, int sW, int xS, int L) {
     super(x,y,w,h,sH,yS, L);
     screenWidth = sW;
+    screenHeight = sH;
     xspeed = xS;
+    speed = yS;
     }
     
     public Color getColor()
@@ -22,7 +26,21 @@ public class DiagonalEnemy extends VerticalEnemy
     public void move()
     {
         Rectangle rect = getRectangle();
-        super.move();
+        rect.y += speed;
+        if(rect.y + rect.height > screenHeight)
+        {
+            speed = -speed;
+            rect.y = screenHeight - (rect.width);
+            imageName = "images/crocup.png";
+        }
+        rect.y += speed;
+        if(rect.y - rect.width < 0)
+        {
+            speed = -speed;
+            rect.y = 0 + (rect.width);
+            imageName = "images/crocdown.png";
+        }
+        rect.y += speed;
         rect.x += xspeed;
         if(rect.x + rect.width > screenWidth)
         {
