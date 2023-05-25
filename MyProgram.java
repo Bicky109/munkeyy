@@ -117,6 +117,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         levels.add(new Level2());
         levels.add(new Level3());
         levels.add(new Level4());
+        levels.add(new Level5());
 
         levels.get(0).setOnLevel(true);
 
