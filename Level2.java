@@ -21,19 +21,19 @@ public class Level2 extends Level {
         }
 
 
-        if (getPlayer().getX() > 480 && getPlayer().getX() < 853 && getPlayer().getY() > 317 && getPlayer().getY() < 513)
+        if (getPlayer().getX() > 490 && getPlayer().getX() < 853 && getPlayer().getY() > 317 && getPlayer().getY() < 513)
         {
-            getPlayer().setX(480);
+            getPlayer().setX(490);
         } 
-        if (getPlayer().getX() > 480 && getPlayer().getX() < 860 && getPlayer().getY() > 317 && getPlayer().getY() < 513)
+        if (getPlayer().getX() > 490 && getPlayer().getX() < 860 && getPlayer().getY() > 317 && getPlayer().getY() < 513)
         {
             getPlayer().setX(860);
         }
-        if(getPlayer().getX() > 480 && getPlayer().getX() < 860 && getPlayer().getY() > 310 && getPlayer().getY() < 513)
+        if(getPlayer().getX() > 490 && getPlayer().getX() < 860 && getPlayer().getY() > 310 && getPlayer().getY() < 513)
         {
             getPlayer().setY(310);
         }
-        if(getPlayer().getX() > 480 && getPlayer().getX() < 860 && getPlayer().getY() > 310 && getPlayer().getY() < 520)
+        if(getPlayer().getX() > 490 && getPlayer().getX() < 860 && getPlayer().getY() > 310 && getPlayer().getY() < 520)
         {
             getPlayer().setY(520);
         }
@@ -46,7 +46,16 @@ public class Level2 extends Level {
             getPlayer().setY(380);
         }
 
-        
+        if(getPlayer().getX() < 310 && getPlayer().getY() > 415)
+        {
+            getPlayer().setX(310);
+        }
+        if(getPlayer().getX() < 310 && getPlayer().getY() > 408)
+        {
+            getPlayer().setY(408);
+        }
+
+
 
 
         if (getPlayer().getX() > 730 && getPlayer().getY() < 245)
