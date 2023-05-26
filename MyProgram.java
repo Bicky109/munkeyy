@@ -15,10 +15,17 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     private int gameWidth = 1280; // the width of the game area
     private int gameHeight = 720; // the height of the game area
     private boolean win;
-    int count;
-    int countLose;
-
-    Sound sound = new Sound();
+    private int count;
+    private int countLose;
+    private int cCount = -1;
+    private Sound1 sound1 = new Sound1();
+    private Sound2 sound2 = new Sound2();
+    private Sound3 sound3 = new Sound3();
+    private Sound4 sound4 = new Sound4();
+    private Sound5 sound5 = new Sound5();
+    private SoundPickup soundPickup = new SoundPickup();
+    private SoundHit soundHit;
+    private SoundGetHit soundGetHit;
 
     private static JLabel dialogLabel;
     private static JFrame frame;
@@ -126,6 +133,14 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         if (timer != null) {
             timer.stop();
         }
+        stopAllMusic();
+        sound1 = new Sound1();
+        sound2 = new Sound2();
+        sound3 = new Sound3();
+        sound4 = new Sound4();
+        sound5 = new Sound5();
+        soundPickup = new SoundPickup();
+        sound1.play();
 
         timer = new Timer(1000 / 30, this); // roughly 30 frames per second
         timer.start();
@@ -152,27 +167,48 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         return 3;
     }
 
-    public void playMusic(int i)
-    {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
-    }
-
-    public void stopMusic()
-    {
-        try{
-            sound.stop();
+    public void stopAllMusic() {
+        try {
+            sound1.stop();
+        } catch (Exception e) {
+            System.out.println("Sound1 not playing");
         }
-        catch(Exception e){
-            System.out.println("No music playing");
+        try {
+            sound2.stop();
+        } catch (Exception e) {
+            System.out.println("Sound2 not playing");
         }
-    }   
+        try {
+            sound3.stop();
+        } catch (Exception e) {
+            System.out.println("Sound3 not playing");
+        }
+        try {
+            sound4.stop();
+        } catch (Exception e) {
+            System.out.println("Sound4 not playing");
+        }
+        try {
+            sound5.stop();
+        } catch (Exception e) {
+            System.out.println("Sound5 not playing");
+        }
+        try {
+            soundPickup.stop();
+        } catch (Exception e) {
+            System.out.println("SoundPickup not playing");
+        }
+        try {
+            soundHit.stop();
+        } catch (Exception e) {
+            System.out.println("SoundHit not playing");
+        }
+        try {
+            soundGetHit.stop();
+        } catch (Exception e) {
+            System.out.println("SoundGetHit not playing");
+        }
 
-    public void playSE(int i)
-    {
-        sound.setFile(i);
-        sound.play();
     }
 
     // The update method does 5 things
@@ -258,6 +294,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     .intersects(levels.get(getCurrentLevel()).getSword().getRect())) {
                 levels.get(getCurrentLevel()).getPlayer().getSword();
                 levels.get(getCurrentLevel()).getSword().getSword();
+                levels.get(getCurrentLevel()).pickupSword();
+                soundPickup = new SoundPickup();
+                soundPickup.play();
             }
         }
 
@@ -266,6 +305,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     .intersects(levels.get(getCurrentLevel()).getCrown().getRect())) {
                 levels.get(getCurrentLevel()).getPlayer().getCrown();
                 levels.get(getCurrentLevel()).getCrown().getCrown();
+                cCount++;
+                if (cCount < 1) {
+                    soundPickup = new SoundPickup();
+                    soundPickup.play();
+                }
             }
         }
 
@@ -295,9 +339,25 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     Player tempPlayer = levels.get(getCurrentLevel()).getPlayer();
                     Lives tempLives = levels.get(getCurrentLevel()).getLives();
                     Door doorEnteredFrom = D;
+
                     levels.get(levels.get(getCurrentLevel()).getNextLevel(D) - 1).setOnLevel(true);
-                    stopMusic();
-                    playMusic(levels.get(getCurrentLevel()).getLevelNum());
+
+                    stopAllMusic();
+                    if (levels.get(getCurrentLevel()).getLevelNum() == 1) {
+                        sound1.play();
+                    }
+                    if (levels.get(getCurrentLevel()).getLevelNum() == 2) {
+                        sound2.play();
+                    }
+                    if (levels.get(getCurrentLevel()).getLevelNum() == 3) {
+                        sound3.play();
+                    }
+                    if (levels.get(getCurrentLevel()).getLevelNum() == 4) {
+                        sound4.play();
+                    }
+                    if (levels.get(getCurrentLevel()).getLevelNum() == 5) {
+                        sound5.play();
+                    }
                     levels.get(getCurrentLevel()).updateValues(tempPlayer, tempLives, doorEnteredFrom);
                     levels.get(getCurrentLevel()).setStartingPosition();
                 }
@@ -320,6 +380,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 if (levels.get(getCurrentLevel()).getPlayer().canGetHit()) {
                     if (e.intersects(levels.get(getCurrentLevel()).getPlayer().getRect())) {
                         levels.get(getCurrentLevel()).getPlayer().hit();
+                        soundGetHit = new SoundGetHit();
+                        soundGetHit.play();
                         levels.get(getCurrentLevel()).getLives().startFCount();
                     }
                 }
@@ -332,6 +394,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     if (e.intersects(levels.get(getCurrentLevel()).getPlayer().getRectSword())) {
                         e.hit();
                         System.out.println("gotHit");
+                        soundHit = new SoundHit();
+                        soundHit.play();
                         levels.get(getCurrentLevel()).setEnemy(count, e.checkLives(e));
                     }
                 }

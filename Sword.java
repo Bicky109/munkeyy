@@ -7,77 +7,69 @@ import java.awt.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Sword
-{
+public class Sword {
     // instance variables - replace the example below with your own
     private Rectangle sword;
     private int width;
     private int height;
 
     private String imageName;
-    
 
     /**
      * Constructor for objects of class Player
      */
-    public Sword(int x, int y, int w, int h)
-    {
+    public Sword(int x, int y, int w, int h) {
         // initialise instance variables
-        sword = new Rectangle(x, y, w, h); //x y w h
+        sword = new Rectangle(x, y, w, h); // x y w h
         width = w;
         height = h;
         imageName = "images/bananasword.png";
-        
-        
+
     }
-    
-    public int getX()
-    {
+
+    public int getX() {
         return sword.x;
     }
-    public int getY()
-    {
+
+    public int getY() {
         return sword.y;
     }
-    public int getWidth()
-    {
+
+    public int getWidth() {
         return width;
     }
-    public int getHeight()
-    {
+
+    public int getHeight() {
         return height;
     }
-    
-    public void x(int tx)
-    {
-        sword.x+= tx;
+
+    public void x(int tx) {
+        sword.x += tx;
     }
-    public void setX(int tx)
-    {
-        sword.x= tx;
+
+    public void setX(int tx) {
+        sword.x = tx;
     }
-    public void y(int ty)
-    {
-        sword.y+= ty;
+
+    public void y(int ty) {
+        sword.y += ty;
     }
-    public void setY(int ty)
-    {
+
+    public void setY(int ty) {
         sword.y = ty;
     }
-    
-    public Rectangle getRect()
-    {
+
+    public Rectangle getRect() {
         return sword;
     }
-    
-    public void getSword()
-    {
+
+    public void getSword() {
         imageName = "images/blank.png";
+        sword = null;
     }
-    
-    public Image getImage()
-    {
+
+    public Image getImage() {
         return ImageLoader.loadCompatibleImage(imageName);
     }
-    
+
 }

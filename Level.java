@@ -322,6 +322,14 @@ public class Level {
         sword = s;
     }
 
+    public void pickupSword() {
+        hasSword = false;
+    }
+
+    public void pickupCrown() {
+
+    }
+
     /**
      * @param b boolean to set X to
      */
