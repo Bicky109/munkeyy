@@ -106,6 +106,10 @@ public class Level {
 
     }
 
+    public int getLevelNum() {
+        return levelNum;
+    }
+
     public void addCrown() {
 
     }

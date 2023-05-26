@@ -18,6 +18,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     int count;
     int countLose;
 
+    Sound sound = new Sound();
+
     private static JLabel dialogLabel;
     private static JFrame frame;
     private static JDialog dialog;
@@ -150,6 +152,29 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         return 3;
     }
 
+    public void playMusic(int i)
+    {
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+
+    public void stopMusic()
+    {
+        try{
+            sound.stop();
+        }
+        catch(Exception e){
+            System.out.println("No music playing");
+        }
+    }   
+
+    public void playSE(int i)
+    {
+        sound.setFile(i);
+        sound.play();
+    }
+
     // The update method does 5 things
     // 1 - it has the player move based on what key is currently being pressed
     // 2 - it prevents the player from leaving the screen
@@ -271,6 +296,8 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     Lives tempLives = levels.get(getCurrentLevel()).getLives();
                     Door doorEnteredFrom = D;
                     levels.get(levels.get(getCurrentLevel()).getNextLevel(D) - 1).setOnLevel(true);
+                    stopMusic();
+                    playMusic(levels.get(getCurrentLevel()).getLevelNum());
                     levels.get(getCurrentLevel()).updateValues(tempPlayer, tempLives, doorEnteredFrom);
                     levels.get(getCurrentLevel()).setStartingPosition();
                 }
