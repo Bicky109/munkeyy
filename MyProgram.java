@@ -334,7 +334,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     soundPickup = new SoundPickup();
                     soundPickup.play();
                 }
-                crownMessage();
+                if (showCrownMessage) {
+                    crownMessage();
+                }
             }
         }
 

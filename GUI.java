@@ -18,7 +18,6 @@ public class GUI implements ActionListener {
         panel.add(label);
         label.setHorizontalAlignment(JLabel.CENTER);
         panel.add(button);
-
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Message:");
@@ -40,7 +39,6 @@ public class GUI implements ActionListener {
         label1.setHorizontalAlignment(JLabel.CENTER);
         panel.add(label1);
         panel.add(button);
-
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Message:");
