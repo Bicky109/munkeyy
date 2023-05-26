@@ -169,7 +169,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     public int getCurrentLevel() {
         for (int i = 0; i < levels.size(); i++) {
             if (levels.get(i).onLevel()) {
-                // System.out.println(i);
                 return i;
             }
         }
@@ -180,47 +179,38 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         try {
             sound1.stop();
         } catch (Exception e) {
-            System.out.println("Sound1 not playing");
         }
         try {
             sound2.stop();
         } catch (Exception e) {
-            System.out.println("Sound2 not playing");
         }
         try {
             sound3.stop();
         } catch (Exception e) {
-            System.out.println("Sound3 not playing");
         }
         try {
             sound4.stop();
         } catch (Exception e) {
-            System.out.println("Sound4 not playing");
         }
         try {
             sound5.stop();
         } catch (Exception e) {
-            System.out.println("Sound5 not playing");
         }
         try {
             soundPickup.stop();
         } catch (Exception e) {
-            System.out.println("SoundPickup not playing");
         }
         try {
             soundHit.stop();
         } catch (Exception e) {
-            System.out.println("SoundHit not playing");
         }
         try {
             soundGetHit.stop();
         } catch (Exception e) {
-            System.out.println("SoundGetHit not playing");
         }
         try {
             soundSwoosh.stop();
         } catch (Exception e) {
-            System.out.println("SoundSwoosh not playing");
         }
 
     }
@@ -361,7 +351,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
             if (D.canUse()) {
                 if (D.intersects(levels.get(getCurrentLevel()).getPlayer().getRect())) {
-                    System.out.println("Door");
                     D.use();
                     Player tempPlayer = levels.get(getCurrentLevel()).getPlayer();
                     Lives tempLives = levels.get(getCurrentLevel()).getLives();
@@ -377,6 +366,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                         sound2.play();
                         if (showSecond) {
                             level2Message();
+                            levels.get(getCurrentLevel()).clear();
                         }
                     }
                     if (levels.get(getCurrentLevel()).getLevelNum() == 3) {
@@ -423,7 +413,6 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                 if (e.canGetHit() && levels.get(getCurrentLevel()).getPlayer().getHasSword() && e.getLives() > 0) {
                     if (e.intersects(levels.get(getCurrentLevel()).getPlayer().getRectSword())) {
                         e.hit();
-                        System.out.println("gotHit");
                         soundHit = new SoundHit();
                         soundHit.play();
                         levels.get(getCurrentLevel()).setEnemy(count, e.checkLives(e));
@@ -529,25 +518,29 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
     private void crownMessage() {
         showCrownMessage = false;
+        levels.get(getCurrentLevel()).clear();
         gui = new GUI("You have saved the kingdom", "All hail the Monkey King!");
     }
 
     private void level2Message() {
         showSecond = false;
-        gui = new GUI("There are four areas.", "Go to each and save the kindom.");
+        levels.get(getCurrentLevel()).clear();
+        gui = new GUI("Go to each four areas to save the kingdom.", "If you have the sword press X to attack");
+        levels.get(getCurrentLevel()).clear();
+
     }
 
     private void onWin() {
         count++;
         levels.get(getCurrentLevel()).clear();
-        gui = new GUI("You have rid the world of all enemies! Go back to the Banana Temple to get your prize.");
+        gui = new GUI("You have rid the world of all enemies! Go back to the Banana Temple to get your prize");
         levels.get(0).addCrown();
     }
 
     private void onLose() {
         countLose++;
         showFirst = false;
-        gui = new GUI("You Died! The kingdom is doomed. Restart.");
+        gui = new GUI("You Died! The kingdom is doomed. Restart");
         levels.get(getCurrentLevel()).clear();
         levels.get(0).reset();
         setUpGame();

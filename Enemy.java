@@ -55,7 +55,6 @@ public abstract class Enemy {
 
     public Enemy checkLives(Enemy e) {
         if (e.getLives() <= 0) {
-            System.out.println("die");
             return null;
         } else {
             return e;
