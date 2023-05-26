@@ -1,12 +1,13 @@
 
 import java.awt.*;
 
-import org.w3c.dom.css.Rect;
+//import org.w3c.dom.css.Rect;
 
 public class StalkerEnemy extends Enemy {
 
     private Rectangle playerRect;
     private int speed;
+    private String imageName = "images/sealeft.png";
 
     public StalkerEnemy(int x, int y, int w, int h, int s, int L, Rectangle p) {
         super(x, y, w, h, L);
@@ -27,8 +28,10 @@ public class StalkerEnemy extends Enemy {
 
         if (ourRect.x < playerRect.x) {
             ourRect.x += speed;
+            imageName = "images/searight.png";
         } else if (ourRect.x > playerRect.x) {
             ourRect.x -= speed;
+            imageName = "images/sealeft.png";
         }
 
         if (ourRect.y < playerRect.y) {
@@ -40,15 +43,16 @@ public class StalkerEnemy extends Enemy {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height);
+        // g.setColor(Color.RED);
+        // g.drawRect(getRectangle().x, getRectangle().y, getRectangle().width,
+        // getRectangle().height);
 
         g.drawImage(getImage(), getRectangle().x, getRectangle().y, getRectangle().width, getRectangle().height, null);
 
     }
 
     public Image getImage() {
-        return ImageLoader.loadCompatibleImage("images/crocdown.png");
+        return ImageLoader.loadCompatibleImage(imageName);
     }
 
 }
