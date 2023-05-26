@@ -26,6 +26,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     private SoundPickup soundPickup = new SoundPickup();
     private SoundHit soundHit;
     private SoundGetHit soundGetHit;
+    private SoundSwoosh soundSwoosh = new SoundSwoosh();
 
     private static JLabel dialogLabel;
     private static JFrame frame;
@@ -140,6 +141,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         sound4 = new Sound4();
         sound5 = new Sound5();
         soundPickup = new SoundPickup();
+        soundSwoosh = new SoundSwoosh();
         sound1.play();
 
         timer = new Timer(1000 / 30, this); // roughly 30 frames per second
@@ -208,6 +210,11 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         } catch (Exception e) {
             System.out.println("SoundGetHit not playing");
         }
+        try {
+            soundSwoosh.stop();
+        } catch (Exception e) {
+            System.out.println("SoundSwoosh not playing");
+        }
 
     }
 
@@ -247,9 +254,19 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
 
     }
 
+    int swingcount = -1;
+
     public void playerUpdate() {
+        swingcount++;
+        if (swingcount >= 2) {
+            swingcount = -1;
+        }
         if (levels.get(getCurrentLevel()).getX() && levels.get(getCurrentLevel()).getPlayer().getHasSword()) {
             levels.get(getCurrentLevel()).getPlayer().attack();
+            if (swingcount == 0) {
+                soundSwoosh = new SoundSwoosh();
+                soundSwoosh.play();
+            }
         } else if (levels.get(getCurrentLevel()).getUp() && levels.get(getCurrentLevel()).getRight()) {
             levels.get(getCurrentLevel()).getPlayer().diagUpRight();
         } else if (levels.get(getCurrentLevel()).getUp() && levels.get(getCurrentLevel()).getLeft()) {

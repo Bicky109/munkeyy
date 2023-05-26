@@ -35,6 +35,10 @@ public class Player {
 
     }
 
+    public boolean getIsAttacking() {
+        return isAttacking;
+    }
+
     public void attack() {
         if (hasSword) {
             isAttacking = true;
