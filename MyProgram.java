@@ -27,6 +27,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
     private SoundHit soundHit;
     private SoundGetHit soundGetHit;
     private SoundSwoosh soundSwoosh = new SoundSwoosh();
+    private GUI gui;
+    private boolean showFirst = true;
+    private boolean showSecond = true;
+    private boolean showCrownMessage = true;
 
     private static JLabel dialogLabel;
     private static JFrame frame;
@@ -43,7 +47,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         dialog.setBounds(125, 125, 100, 70);
         dialog.setVisible(false);
 
-        frame.setTitle("The Legend of Zonkey");
+        frame.setTitle("Monkey Kingdom Mania");
         frame.setLayout(new BorderLayout());
 
         MyProgram game = new MyProgram();
@@ -147,7 +151,10 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         timer = new Timer(1000 / 30, this); // roughly 30 frames per second
         timer.start();
         levels.get(getCurrentLevel()).clear();
-
+        if (showFirst) {
+            gui = new GUI("Monkey Kingdom Mania",
+                    "The kingdom has been taken over by evil animals! Take the legendary banana sword and defeat them.");
+        }
     }
 
     private void enterFullScreen() {
@@ -327,6 +334,7 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     soundPickup = new SoundPickup();
                     soundPickup.play();
                 }
+                crownMessage();
             }
         }
 
@@ -365,6 +373,9 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
                     }
                     if (levels.get(getCurrentLevel()).getLevelNum() == 2) {
                         sound2.play();
+                        if (showSecond) {
+                            level2Message();
+                        }
                     }
                     if (levels.get(getCurrentLevel()).getLevelNum() == 3) {
                         sound3.play();
@@ -514,45 +525,30 @@ public class MyProgram extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    private void crownMessage() {
+        showCrownMessage = false;
+        gui = new GUI("You have saved the kingdom", "All hail the Monkey King!");
+    }
+
+    private void level2Message() {
+        showSecond = false;
+        gui = new GUI("There are four areas.", "Go to each and save the kindom.");
+    }
+
     private void onWin() {
         count++;
         levels.get(getCurrentLevel()).clear();
-        createDialog("You have rid the world of all enemies! Go to the Banana Temple to get your prize.", 5000);
+        gui = new GUI("You have rid the world of all enemies! Go back to the Banana Temple to get your prize.");
         levels.get(0).addCrown();
     }
 
     private void onLose() {
         countLose++;
+        showFirst = false;
+        gui = new GUI("You Died! The kingdom is doomed. Restart.");
         levels.get(getCurrentLevel()).clear();
-        createDialog("You have Died. Restart", 2250);
         levels.get(0).reset();
         setUpGame();
     }
 
-    // Sets visible a Pseudo-dialog that removes itself after a fixed time interval
-    // Uses a thread to not block the rest of the program
-    //
-    // @param: message: String -> The message that will appear on the dialog
-    // @param: delay: int -> How long (in milliseconds) that Dialog is visible
-    private void createDialog(String message, int delay) {
-        dialogLabel.setText(message);
-        dialog.setVisible(true);
-        frame.requestFocus();
-
-        Thread thread = new Thread(() -> {
-            try {
-                // Show pop up for [delay] milliseconds
-                Thread.sleep(delay);
-            } catch (Exception e) {
-                System.out.println("Thread failed :(");
-                dialog.setVisible(false);
-                frame.requestFocus();
-            }
-            // End of 3 seconds
-            // Close the pop up
-            dialog.setVisible(false);
-            frame.requestFocus();
-        });
-        thread.start();
-    }
 }
